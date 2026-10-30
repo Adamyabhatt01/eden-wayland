@@ -153,7 +153,15 @@ Tests must be runnable without touching `~/.config/eden` or
 
 | Date | Build | Scenario | Result | Evidence |
 |---|---|---|---|---|
-| — | — | — | Not run | — |
+| 2026-10-31 | Official v0.2.1 AppImage (extracted, isolated HOME) | Default launch on Hyprland | Observed: forced XWayland | `hyprctl`: class `eden`, `xwayland=true`; stderr "Wayland is disabled due to known issues" (hook sets `QT_QPA_PLATFORM=xcb`) |
+| 2026-10-31 | Official v0.2.1 AppImage | Opt-in `I_WANT_A_BROKEN_WAYLAND_UI=1 QT_QPA_PLATFORM=wayland` | Observed: native Wayland GUI | `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false` |
+| 2026-10-31 | Official v0.2.1 AppImage | `WAYLAND_DEBUG=client` trace (opt-in) | Observed protocol set | binds `xdg_wm_base`, `zxdg_decoration_manager_v1`, `wp_fractional_scale_manager_v1`, `wp_viewporter`, `wp_presentation`, `zwp_linux_dmabuf_v1`, `wl_seat`, `wl_output` |
+| 2026-10-31 | Official v0.2.1 AppImage | Vulkan surface + swapchain during title boot | Not run | No title/homebrew content available in the sandbox; not fabricated |
+
+These rows describe the **official binary**, not the fork. They prove the
+environment and Qt Wayland path; they do not prove emulator Vulkan
+presentation. No result in this file may be recorded until it has actually been
+observed.
 
 Only real, observed results belong here, with the exact build commit,
 environment and log excerpt (or a path to the saved log).

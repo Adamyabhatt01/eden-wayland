@@ -139,7 +139,7 @@ Eden is **not** an X11-only application:
 
 - The Vulkan layer already implements `VK_KHR_wayland_surface`
   (`src/video_core/vulkan_common/vulkan_surface.cpp:93-106`,
-  `vmulkan_instance.cpp`).
+  `vulkan_instance.cpp:66-68`).
 - Qt WSI extraction already supports Wayland via
   `QPlatformNativeInterface("display"/"surface")`
   (`src/qt_common/qt_common.cpp:85-135`).
@@ -151,7 +151,57 @@ recommending X11 (`src/yuzu/main_window.cpp:4430-4477`), and sets `DISPLAY=:0`
 when `DISPLAY` is unset (`main.cpp:155-157`). Native Wayland is therefore a
 **harden-and-verify** effort, not a greenfield port.
 
-## 10. Sources
+## 10. Runtime evidence: official AppImage v0.2.1 (isolated)
+
+The official `Eden-Linux-v0.2.1-amd64-gcc-standard.AppImage` (70,220,957
+bytes) was extracted into `/tmp` and `AppDir/AppRun` was executed directly.
+The `.AppImage` launcher itself was rejected by AppImageLauncher on this
+system ("This doesn't look like a squashfs image") because the image uses the
+uruntime format; running the extracted `AppRun` avoids that host integration
+without installing anything. Both runs used a throw-away `HOME`,
+`XDG_CONFIG_HOME`, `XDG_DATA_HOME`, `XDG_CACHE_HOME` and `XDG_STATE_HOME`.
+The real Eden data directory was not touched.
+
+The AppImage bundles Qt 6.11.1 including `libqwayland.so`, but
+`AppDir/bin/wayland-is-broken.hook` forces X11 on a Wayland session unless
+`I_WANT_A_BROKEN_WAYLAND_UI=1` is set:
+
+```sh
+# AppDir/bin/wayland-is-broken.hook (excerpt)
+if [ "$I_WANT_A_BROKEN_WAYLAND_UI" != 1 ]; then
+    [ "$XDG_SESSION_TYPE" = 'wayland' ] && echo "Wayland is disabled due to known issues" >&2
+    export SDL_VIDEO_DRIVER=x11 QT_QPA_PLATFORM=xcb GDK_BACKEND=x11 XDG_SESSION_TYPE=x11
+    unset WAYLAND_DISPLAY
+fi
+```
+
+Observed on this Hyprland session with `hyprctl clients -j`:
+
+| Run | Environment | Window class / app_id | `xwayland` | Notes |
+|---|---|---|---|---|
+| Default | no opt-in | `eden` | `true` | stderr prints "Wayland is disabled due to known issues"; hook sets `QT_QPA_PLATFORM=xcb`, unsets `WAYLAND_DISPLAY` |
+| Opt-in | `I_WANT_A_BROKEN_WAYLAND_UI=1 QT_QPA_PLATFORM=wayland` | `dev.eden_emu.eden` | `false` | native Wayland toplevel, no XWayland |
+
+A `WAYLAND_DEBUG=client` trace from the opt-in run shows the Qt client
+binding: `wl_compositor`, `xdg_wm_base` (`xdg_surface`/`xdg_toplevel`),
+`zxdg_decoration_manager_v1`, `wp_fractional_scale_manager_v1`,
+`wp_viewporter`, `wp_presentation`, `zwp_linux_dmabuf_v1`, `wl_shm`,
+`wl_seat`, `wl_output`, `wl_pointer`, `wl_keyboard`.
+
+Interpretation:
+
+- The native Wayland **GUI** path works on this compositor today; XWayland
+  fallback works too.
+- This does **not** prove the emulator's Vulkan path. No game or homebrew
+  title was booted, so `VkSurfaceKHR`, swapchain creation/recreation and
+  presentation were not exercised. Those remain Phase 3 work (T04 onward).
+- The opt-in variable is product policy, not evidence that Wayland is broken;
+  removing it is the target of patch A1.
+- The isolated run logs `Could not register app ID: App info not found for
+  'dev.eden_emu.eden'` because no desktop file is installed in the sandbox;
+  this is an environment artefact, not a Wayland failure.
+
+## 11. Sources
 
 - https://git.eden-emu.dev/eden-emu/eden
 - https://git.eden-emu.dev/

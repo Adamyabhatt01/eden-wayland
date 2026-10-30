@@ -24,6 +24,7 @@ State: audit + plan complete; no fork code changes yet. Items are marked
 | K14 | `qvulkaninstance` is not used; Eden creates its own instance. This is intentional and not a bug, but diagnostics must not assume Qt's instance | `bootmanager.cpp:108-112`, `renderer_vulkan.cpp:134-143` | Document |
 | K15 | Wayland fractional scales feed `width * devicePixelRatio` through a `u32` truncation | `bootmanager.cpp:186-193` | Fix (E1) |
 | K16 | No handling of a pure DPR change without a resize | `bootmanager.cpp:937-943` | Fix (E1) |
+| K17 | Official AppImage ships `bin/wayland-is-broken.hook`, which forces `QT_QPA_PLATFORM=xcb`, `SDL_VIDEO_DRIVER=x11`, `GDK_BACKEND=x11` and unsets `WAYLAND_DISPLAY` on Wayland unless `I_WANT_A_BROKEN_WAYLAND_UI=1`; the bundled Qt 6.11.1 Wayland plugin is nevertheless functional when opted in (observed: `xwayland=false`) | AppImage `AppDir/bin/wayland-is-broken.hook`, extracted v0.2.1 | Fork packaging must not ship this hook; document opt-in for the official binary (J1) |
 
 ## 2. Wayland-specific functional limitations
 

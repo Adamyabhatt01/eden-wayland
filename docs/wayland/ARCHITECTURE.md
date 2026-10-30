@@ -382,6 +382,19 @@ Protocols actually needed on Hyprland:
 - `zwp_pointer_constraints_v1` / `relative-pointer`: not exposed by Qt;
   needed only for cursor-warping mouse modes.
 
+Runtime observation (official v0.2.1 AppImage, isolated run, 2026-10-31):
+
+- Default launch is forced to XWayland (`hyprctl`: class `eden`,
+  `xwayland=true`) by `bin/wayland-is-broken.hook`.
+- With `I_WANT_A_BROKEN_WAYLAND_UI=1` and `QT_QPA_PLATFORM=wayland` the same
+  binary is native (`app_id=dev.eden_emu.eden`, `xwayland=false`).
+- `WAYLAND_DEBUG=client` shows the Qt client binding `xdg-shell`,
+  `xdg-decoration`, `fractional-scale-v1`, `viewporter`, `presentation-time`,
+  `linux-dmabuf`, `wl_seat`, `wl_output`, pointer and keyboard.
+- This validates the GUI/windowing path on Hyprland but **not** the emulator
+  Vulkan surface: no title was booted, so `VkSurfaceKHR` and swapchain
+  presentation remain unverified (T04+).
+
 ## 8. Technical risks
 
 | # | Risk | Severity | Affected area |
