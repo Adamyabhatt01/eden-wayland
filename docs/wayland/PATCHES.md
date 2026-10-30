@@ -4,18 +4,10 @@ All fork-specific modifications, grouped by subsystem. Keep this list in sync
 with `git log upstream/master..linux-wayland`.
 
 Base commit: `943f1fc76087adcfc893fb1ca3aea507df15d004`.
-Source patches implemented: **none**. Fork commits currently present:
-
-| Commit | Subject |
-|---|---|
-| `d9d8f4dd4a` | `docs: add Wayland architecture audit and implementation plan` |
-| `405e31b065` | `test: add upstream sync audit and Wayland diagnostics tooling` |
-| `c073794101` | `build: add development, release and portable run scripts` |
-| `f4d76ccd44` | `docs: record official AppImage native Wayland and XWayland evidence` |
-| `030ebed61e` | `docs: record Vulkan dependency workaround and content-test blocker` |
-
-None of these change emulator behaviour. They are documentation, scripts, and
-read-only diagnostics.
+Source patches implemented: **none**. All fork commits so far are
+documentation, read-only diagnostics, or build/run scripts; none change
+emulator behaviour. Run `git log --oneline upstream/master..linux-wayland` for
+the current list (hashes are kept out of this file so it cannot go stale).
 
 ## Categorization rules
 
@@ -43,7 +35,7 @@ read-only diagnostics.
 | E1 | `fix: use rounded framebuffer extents for fractional scaling` | `bootmanager.cpp` | 4 | Handles DPR changes |
 | F1 | `fix: correct fullscreen window flag restoration` | `main_window.cpp` | 4 | Verify before changing; may be upstream-only bug |
 | J1 | `packaging: add Arch Linux PKGBUILD` | `packaging/arch/PKGBUILD` | 6 | Runtime dep on `qt6-wayland` |
-| H1 | `test: add native Wayland diagnostic harness` | `tools/wayland/`, `tests/` | 3–6 | Proves surface/swapchain without commercial content |
+| H1 | `test: add native Wayland diagnostic harness` | `tools/wayland/`, `tests/` | 3–6 | Partially implemented: `diag.sh` and `vk-present-probe.c` (environment-level surface support). Emulator-internal self-test still pending |
 
 Planned patches will be re-evaluated after the baseline build; some may be
 unnecessary once runtime behaviour is observed. No patch is claimed as
