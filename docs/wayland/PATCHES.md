@@ -12,6 +12,7 @@ Source patches implemented: **none**. Fork commits currently present:
 | `405e31b065` | `test: add upstream sync audit and Wayland diagnostics tooling` |
 | `c073794101` | `build: add development, release and portable run scripts` |
 | `f4d76ccd44` | `docs: record official AppImage native Wayland and XWayland evidence` |
+| `030ebed61e` | `docs: record Vulkan dependency workaround and content-test blocker` |
 
 None of these change emulator behaviour. They are documentation, scripts, and
 read-only diagnostics.

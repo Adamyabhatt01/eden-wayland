@@ -25,6 +25,8 @@ State: audit + plan complete; no fork code changes yet. Items are marked
 | K15 | Wayland fractional scales feed `width * devicePixelRatio` through a `u32` truncation | `bootmanager.cpp:186-193` | Fix (E1) |
 | K16 | No handling of a pure DPR change without a resize | `bootmanager.cpp:937-943` | Fix (E1) |
 | K17 | Official AppImage ships `bin/wayland-is-broken.hook`, which forces `QT_QPA_PLATFORM=xcb`, `SDL_VIDEO_DRIVER=x11`, `GDK_BACKEND=x11` and unsets `WAYLAND_DISPLAY` on Wayland unless `I_WANT_A_BROKEN_WAYLAND_UI=1`; the bundled Qt 6.11.1 Wayland plugin is nevertheless functional when opted in (observed: `xwayland=false`) | AppImage `AppDir/bin/wayland-is-broken.hook`, extracted v0.2.1 | Fork packaging must not ship this hook; document opt-in for the official binary (J1) |
+| K18 | SDL CLI crashes on any early-exit path, including `--help`: `SDL_AppInit` allocates state but never assigns `*appstate`, so `SDL_AppQuit` dereferences null. Observed exit 139 on unmodified upstream | `src/yuzu_cmd/yuzu.cpp:165-166,333-335` | Report upstream; CLI is not part of the Wayland frontend |
+| K19 | 8 unit tests fail on unmodified upstream in this environment, all in `MemoryTracker`; the test rasterizer's `UpdatePagesCachedBatch` is a no-op so counted paths never run | `src/tests/video_core/memory_tracker.cpp:47-49`; baseline 63/71 passed | Record as baseline; do not mask or "fix" tests to fake a green suite |
 
 ## 2. Wayland-specific functional limitations
 

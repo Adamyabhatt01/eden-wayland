@@ -91,6 +91,42 @@ The project uses CPM for missing dependencies. Its cache lives in
 `.cache/cpm`. Offline builds require all dependencies to be present in that
 cache or installed on the system.
 
+### Baseline build and test (unmodified upstream, 2026-10-31)
+
+Source tree unmodified against upstream `943f1fc760` (SCM revision reported
+`f4d76ccd44`, a docs-only fork commit). System Qt lacked `qt6-charts`, so the
+Qt frontend could not be configured; the SDL CLI/core target was built instead:
+
+```sh
+cmake -S . -B build/baseline-cli -G Ninja \
+  -DENABLE_QT=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DVulkanHeaders_FORCE_BUNDLED=ON
+cmake --build build/baseline-cli -j12
+```
+
+Observed result:
+
+- Configure succeeded in 19.7 s; build completed 1529/1529 targets, exit 0,
+  no compiler errors.
+- Artifacts: `bin/eden-cli` (638 MiB, debug info), `bin/tests` (639 MiB),
+  `bin/eden-room` (30 MiB).
+- Unit suite (`bin/tests --durations yes`): **71 test cases, 63 passed,
+  8 failed; 3,773,593 assertions with 8 failures**. All 8 failures are in
+  `src/tests/video_core/memory_tracker.cpp`:
+  `Cached write downloads`, `Out of bound ranges 1/2/3`, `Small region`,
+  `FlushCachedWrites batching`, `Sparse regions 2`, `Rasterizer counting`.
+  The test rasterizer's `UpdatePagesCachedBatch` is a no-op stub
+  (`src/tests/video_core/memory_tracker.cpp:47-49`), so batch-based tracking paths never call the
+  counted single-page path. This is an upstream test/implementation mismatch,
+  not Wayland-related; the baseline is recorded as-is.
+- CLI smoke test `bin/eden-cli --help` exits 139. `SDL_AppInit` never assigns
+  `*appstate` (`src/yuzu_cmd/yuzu.cpp:165-166`), and any early failure path
+  reaches `SDL_AppQuit`, which dereferences the null state at
+  `src/yuzu_cmd/yuzu.cpp:333-335`. Recorded as an upstream CLI defect; the Qt
+  frontend is unaffected.
+- The Qt/Vulkan baseline is **not yet built** and remains blocked on
+  `qt6-charts`.
+
 ## 3. Isolated runtime and portable mode
 
 Eden treats an existing `./user` directory as portable data

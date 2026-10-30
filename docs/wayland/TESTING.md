@@ -165,6 +165,10 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | Official v0.2.1 AppImage | Opt-in `I_WANT_A_BROKEN_WAYLAND_UI=1 QT_QPA_PLATFORM=wayland` | Observed: native Wayland GUI | `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false` |
 | 2026-10-31 | Official v0.2.1 AppImage | `WAYLAND_DEBUG=client` trace (opt-in) | Observed protocol set | binds `xdg_wm_base`, `zxdg_decoration_manager_v1`, `wp_fractional_scale_manager_v1`, `wp_viewporter`, `wp_presentation`, `zwp_linux_dmabuf_v1`, `wl_seat`, `wl_output` |
 | 2026-10-31 | Official v0.2.1 AppImage | Vulkan surface + swapchain during title boot | Not run | No title/homebrew content available in the sandbox; not fabricated |
+| 2026-10-31 | Unmodified upstream `943f1fc760`, `ENABLE_QT=OFF`, RelWithDebInfo | Build `eden-cli`, `tests`, `eden-room` | Pass (build) | 1529/1529 targets, exit 0, no compiler errors; built with bundled Vulkan headers; see BUILD_ARCH §2 |
+| 2026-10-31 | Same baseline | `bin/tests --durations yes` | 63/71 passed, 8 failed | 3,773,593 assertions, 8 failures, all `MemoryTracker`; upstream test/implementation mismatch, not Wayland-related |
+| 2026-10-31 | Same baseline | `bin/eden-cli --help` | Fail (exit 139) | Upstream CLI bug: `SDL_AppInit` never sets `*appstate`, `SDL_AppQuit` dereferences null; Qt frontend unaffected |
+| — | Qt GUI baseline | Configure/build with `ENABLE_QT=ON` | Blocked | `qt6-charts` not installed |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan
