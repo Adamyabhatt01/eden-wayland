@@ -124,8 +124,25 @@ Observed result:
   reaches `SDL_AppQuit`, which dereferences the null state at
   `src/yuzu_cmd/yuzu.cpp:333-335`. Recorded as an upstream CLI defect; the Qt
   frontend is unaffected.
-- The Qt/Vulkan baseline is **not yet built** and remains blocked on
-  `qt6-charts`.
+- The Qt/Vulkan baseline initially appeared blocked on `qt6-charts`. To avoid
+  a system install, the official Arch package
+  `qt6-charts-6.12.0-1-x86_64.pkg.tar.zst` was downloaded and extracted into
+  `/tmp/qt6-charts-root` (no system files changed), and CMake was pointed at it
+  with `-DQt6Charts_DIR=/tmp/qt6-charts-root/usr/lib/cmake/Qt6Charts`.
+  **This is a local build workaround, not a supported runtime layout.** The
+  resulting binary has `RUNPATH=/tmp/qt6-charts-root/usr/lib`; install the real
+  `qt6-charts` package for normal use.
+- With that workaround, `ENABLE_QT=ON` configured in 4.1 s and built
+  1683/1683 targets, exit 0, no compiler errors. Artifact:
+  `bin/eden` (761 MiB with debug info).
+- Runtime (isolated portable `user/`, empty profile) on Hyprland:
+  - Native Wayland: `hyprctl` reports class/app_id `dev.eden_emu.eden`,
+    `xwayland=false`.
+  - `EDEN_DISPLAY=x11`: class `eden`, `xwayland=true`.
+  - An empty profile shows the "Derivation Components Missing" (keys/
+    firmware) modal before `OnCheckGraphicsBackend`, so the upstream Wayland
+    warning dialog was not reached in this run. No game was booted; the
+    renderer and swapchain were not created.
 
 ## 3. Isolated runtime and portable mode
 

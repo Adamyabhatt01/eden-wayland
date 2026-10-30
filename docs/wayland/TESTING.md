@@ -222,9 +222,11 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | Unmodified upstream `943f1fc760`, `ENABLE_QT=OFF`, RelWithDebInfo | Build `eden-cli`, `tests`, `eden-room` | Pass (build) | 1529/1529 targets, exit 0, no compiler errors; built with bundled Vulkan headers; see BUILD_ARCH §2 |
 | 2026-10-31 | Same baseline | `bin/tests --durations yes` | 63/71 passed, 8 failed | 3,773,593 assertions, 8 failures, all `MemoryTracker`; upstream test/implementation mismatch, not Wayland-related |
 | 2026-10-31 | Same baseline | `bin/eden-cli --help` | Fail (exit 139) | Upstream CLI bug: `SDL_AppInit` never sets `*appstate`, `SDL_AppQuit` dereferences null; Qt frontend unaffected |
-| — | Qt GUI baseline | Configure/build with `ENABLE_QT=ON` | Blocked | `qt6-charts` not installed |
+| 2026-10-31 | Same source, `ENABLE_QT=ON`, Charts from extracted Arch package | Configure/build `bin/eden` | Pass (build) | 1683/1683 targets, exit 0; local `/tmp` Charts workaround (install `qt6-charts` for normal use) |
 | 2026-10-31 | `tools/wayland/vk-present-probe.c` (standalone) | Default and `prime-run` enumeration | Pass (environment) | Both GPUs present on a real Wayland surface; `currentExtent` undefined; `FIFO_RELAXED` absent; PRIME changes GPU0 to NVIDIA |
 | 2026-10-31 | `tools/wayland/qt-wl-native-probe.cpp` (Qt 6.12) | Wayland and XCB native resources | Pass | Wayland: top-level + child `display`/`surface` non-null, `wl_subsurface` bound; XCB: `surface` null as expected |
+| 2026-10-31 | Unmodified upstream Qt baseline `e90121aeec` (source = `943f1fc760`), `ENABLE_QT=ON` | GUI launch, native Wayland, isolated `user/` | Pass (GUI only) | `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false`; no renderer (empty profile, no title) |
+| 2026-10-31 | Same Qt baseline | GUI launch, `EDEN_DISPLAY=x11` | Pass (GUI only) | `hyprctl`: class `eden`, `xwayland=true`; XWayland fallback works |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan
