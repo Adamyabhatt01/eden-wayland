@@ -126,9 +126,9 @@ claim may be made.
 
 | ID | Scenario | Expected | Status |
 |---|---|---|---|
-| T01 | Launch GUI, no game, native Wayland | `platformName=wayland`, `xwayland=false`, no warning dialog | Not run |
-| T02 | Launch with `QT_QPA_PLATFORM=xcb` | XWayland window, same functionality | Not run |
-| T03 | Force X11 via setting, restart | `platformName=xcb` persisted | Not run |
+| T01 | Launch GUI, no game, native Wayland | `platformName=wayland`, `xwayland=false`, no warning dialog | Pass (GUI only) |
+| T02 | Launch with `QT_QPA_PLATFORM=xcb` | XWayland window, same functionality | Pass (GUI only) |
+| T03 | Force X11 via setting, restart | `platformName=xcb` persisted | Pass (GUI only) |
 | T04 | Render a frame (legal content or self-test) | Surface + swapchain created, frames presented | Not run |
 | T05 | Intel iGPU only | Intel device selected, present works | Not run |
 | T06 | NVIDIA dGPU via PRIME | NVIDIA device selected, present works | Not run |
@@ -227,6 +227,10 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | `tools/wayland/qt-wl-native-probe.cpp` (Qt 6.12) | Wayland and XCB native resources | Pass | Wayland: top-level + child `display`/`surface` non-null, `wl_subsurface` bound; XCB: `surface` null as expected |
 | 2026-10-31 | Unmodified upstream Qt baseline `e90121aeec` (source = `943f1fc760`), `ENABLE_QT=ON` | GUI launch, native Wayland, isolated `user/` | Pass (GUI only) | `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false`; no renderer (empty profile, no title) |
 | 2026-10-31 | Same Qt baseline | GUI launch, `EDEN_DISPLAY=x11` | Pass (GUI only) | `hyprctl`: class `eden`, `xwayland=true`; XWayland fallback works |
+| 2026-10-31 | Fork with A1+A2 (`e6cca3f89f`, `de2d61cdfa`), RelWithDebInfo; binary version string is stale (`e90121aeec`) because CMake was configured earlier | T01: GUI launch, native Wayland, isolated `user/` | Pass (GUI only) | Log: `Qt platform: wayland \| session: wayland \| WAYLAND_DISPLAY: wayland-1 \| DISPLAY: :1 \| force_x11: false` and `Using native Wayland. XWayland remains available...`; `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false`; warning dialog absent |
+| 2026-10-31 | Same fork build | T02: GUI launch, `EDEN_DISPLAY=x11` (`QT_QPA_PLATFORM=xcb`) | Pass (GUI only) | Log: `Qt platform: xcb \| session: wayland \| ... \| force_x11: false`; `hyprctl`: class `eden`, `xwayland=true` |
+| 2026-10-31 | Same fork build | T03: `gui_force_x11=true` with ambient `QT_QPA_PLATFORM=wayland` | Pass (GUI only) | `hyprctl`: class `eden`, `xwayland=true`; the explicit setting overrode the ambient Qt platform. Test config removed afterwards |
+| 2026-10-31 | Same fork build | A2 Vulkan diagnostics (surface/swapchain logs) | Not run | Requires renderer initialization, which requires bootable content; no claim made |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan
