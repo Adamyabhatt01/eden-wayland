@@ -27,6 +27,7 @@ if [[ ! -x "$BIN" ]]; then
     echo "Build first: scripts/build-dev.sh" >&2
     exit 1
 fi
+BIN=$(realpath "$BIN")
 
 RUN_DIR=${RUN_DIR:-"$REPO_ROOT/build/wayland-run"}
 mkdir -p "$RUN_DIR/user"
