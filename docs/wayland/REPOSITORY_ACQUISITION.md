@@ -104,9 +104,31 @@ Prime offload helper present: `/usr/bin/prime-run` sets
 `__NV_PRIME_RENDER_OFFLOAD=1`, `__VK_LAYER_NV_optimus=NVIDIA_only`,
 `__GLX_VENDOR_LIBRARY_NAME=nvidia`.
 
+Observed Vulkan facts (2026-10-31):
+
+- Loader exposes `VK_KHR_wayland_surface` revision 6, plus `VK_KHR_xcb_surface`
+  and `VK_KHR_xlib_surface`; no surface extension is missing for either path.
+- Device selection layers present: `VK_LAYER_MESA_device_select` and
+  `VK_LAYER_NV_optimus`.
+- Default enumeration puts Intel first (integrated), NVIDIA second (discrete).
+  `prime-run vulkaninfo --summary` puts NVIDIA first and selects it as GPU0.
+
 ## 6. Missing system packages at audit time
 
 Build-blocking: `qt6-charts` (required by `find_package(Qt6 ... Charts ...)`).
+
+Vulkan headers are installed (`vulkan-headers`) but
+`vulkan-utility-libraries` is not. Eden's `AddDependentPackages(vulkan-headers
+vulkan-utility-libraries)` refuses a mixed system/bundled setup, so
+configuring without that package requires forcing **both** to bundle:
+
+```sh
+cmake ... -DVulkanHeaders_FORCE_BUNDLED=ON
+```
+
+Installing `vulkan-utility-libraries` is the preferred reproducible fix;
+forcing the bundled copy works without root and was verified during the
+non-Qt baseline configure.
 
 Recommended for validation: `vulkan-validation-layers`, `wayland-utils`
 (provides `wayland-info`), and optionally `catch2`, `enet`, `gamemode`

@@ -9,7 +9,7 @@ Target: Arch Linux, CMake + Ninja, system Qt 6, Vulkan, Hyprland/Wayland.
 ```sh
 sudo pacman -S --needed base-devel cmake ninja git boost fmt sdl3 enet \
   qt6-base qt6-charts qt6-multimedia qt6-wayland qt6-svg qt6-declarative \
-  vulkan-headers vulkan-icd-loader vulkan-validation-layers \
+  vulkan-headers vulkan-utility-libraries vulkan-icd-loader vulkan-validation-layers \
   spirv-tools spirv-headers glslang libusb ffmpeg libzip lz4 zlib zstd \
   nlohmann-json openssl opus gamemode catch2 wayland wayland-protocols \
   wayland-utils pkgconf
@@ -24,10 +24,15 @@ Notes:
   APIs.
 - `enet`, `gamemode`, `catch2` can be fetched by CPM, but system packages are
   preferred for reproducible distro builds.
+- `vulkan-headers` and `vulkan-utility-libraries` are configured as one
+  dependent group. If only one is installed system-wide, CMake aborts with
+  "Partial dependency installation detected"; either install both or configure
+  with `-DVulkanHeaders_FORCE_BUNDLED=ON` to bundle both.
 - `vulkan-validation-layers` is not required to build; it is required for the
   validation test matrix.
 - Missing packages on this machine at the time of writing: `qt6-charts`
-  (blocking), `vulkan-validation-layers`, `wayland-utils`, plus optional
+  (blocking), `vulkan-utility-libraries` (workaround above),
+  `vulkan-validation-layers`, `wayland-utils`, plus optional
   `enet`/`gamemode`/`catch2`.
 
 ### Runtime

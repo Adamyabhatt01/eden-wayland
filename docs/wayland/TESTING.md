@@ -62,6 +62,14 @@ Intel Iris Xe device (or the explicitly selected device).
 
 ## 4. Test matrix
 
+T04 onward require bootable content. This machine currently contains only
+commercial NSP dumps under `~/Downloads`; those are out of scope, will not be
+read, copied, or bundled. A legally redistributable homebrew NRO or a
+user-supplied legal title is required to exercise the Vulkan surface and
+swapchain. Until then T04+ remain **Not run**, and no Vulkan-presentation
+claim may be made.
+
+
 | ID | Scenario | Expected | Status |
 |---|---|---|---|
 | T01 | Launch GUI, no game, native Wayland | `platformName=wayland`, `xwayland=false`, no warning dialog | Not run |

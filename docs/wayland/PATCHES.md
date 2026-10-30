@@ -4,7 +4,17 @@ All fork-specific modifications, grouped by subsystem. Keep this list in sync
 with `git log upstream/master..linux-wayland`.
 
 Base commit: `943f1fc76087adcfc893fb1ca3aea507df15d004`.
-Current fork-specific commits: **none**.
+Source patches implemented: **none**. Fork commits currently present:
+
+| Commit | Subject |
+|---|---|
+| `d9d8f4dd4a` | `docs: add Wayland architecture audit and implementation plan` |
+| `405e31b065` | `test: add upstream sync audit and Wayland diagnostics tooling` |
+| `c073794101` | `build: add development, release and portable run scripts` |
+| `f4d76ccd44` | `docs: record official AppImage native Wayland and XWayland evidence` |
+
+None of these change emulator behaviour. They are documentation, scripts, and
+read-only diagnostics.
 
 ## Categorization rules
 
@@ -22,7 +32,7 @@ Current fork-specific commits: **none**.
 
 | ID | Commit subject (planned) | Files | Phase | Notes |
 |---|---|---|---|---|
-| A1 | `feat: prefer native Wayland on Wayland sessions` | `src/yuzu/main.cpp`, `src/yuzu/main_window.cpp`, UI settings | 3 | Removes forced X11 and blocking warning; keeps opt-in fallback |
+| A1 | `feat: prefer native Wayland on Wayland sessions` | `src/yuzu/main.cpp`, `src/yuzu/main_window.cpp`, UI settings | 3 | Removes forced X11 and blocking warning; keeps opt-in fallback. Runtime evidence: default official AppImage runs `xwayland=true`; opt-in runs native. Fork packaging must also omit `wayland-is-broken.hook` (K17) |
 | A2 | `feat: add Wayland/Vulkan runtime diagnostics` | `qt_common/qt_common.cpp`, `renderer_vulkan.cpp`, `vk_swapchain.cpp` | 3 | Proves platform, surface, GPU, present mode |
 | B1 | `build: declare wayland-client dependency` | `CMakeLists.txt`, `src/video_core/CMakeLists.txt` | 3 | Headers for `vulkan_wayland.h` |
 | C1 | `fix: select a GPU that can present on the Wayland surface` | `renderer_vulkan.cpp`, `vulkan_device.cpp` | 4 | Fallback with loud diagnostics; respects explicit choice |
