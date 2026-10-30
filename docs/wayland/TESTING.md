@@ -60,6 +60,34 @@ MANGOHUD=1 ./eden          # overlay shows GPU name
 For Intel: launch without PRIME variables; the diagnostics must report the
 Intel Iris Xe device (or the explicitly selected device).
 
+### Standalone surface-support probe
+
+`tools/wayland/vk-present-probe.c` creates a real `wl_surface` via
+`wl_compositor`, calls `vkCreateWaylandSurfaceKHR`, and reports per-GPU
+present family, formats and present modes. It is independent of Eden and of
+Qt, so it can run before the Qt build exists:
+
+```sh
+cc -O2 -Wall -Wextra -Werror -o /tmp/vk-present-probe \
+   tools/wayland/vk-present-probe.c $(pkg-config --cflags --libs wayland-client vulkan)
+/tmp/vk-present-probe
+prime-run /tmp/vk-present-probe
+```
+
+Observed on 2026-10-31:
+
+- Default enumeration: Intel GPU0, NVIDIA GPU1. `prime-run`: NVIDIA GPU0.
+- Both GPUs: `swapchain extension: yes`, present family 0 with
+  `surface=1 wayland=1 graphics=yes`.
+- Intel present modes: `mailbox fifo immediate`; NVIDIA: `mailbox fifo
+  immediate` plus a vendor mode. **`FIFO_RELAXED` is absent on both.**
+- `currentExtent` is `4294967295x4294967295` (compositor-decided), so the
+  swapchain must use the size passed by the app and handle zero extents.
+
+This proves the environment and the Vulkan Wayland WSI path, not Eden's own
+swapchain. `vk_swapchain.cpp:74-77` already falls back to `FIFO` when the
+requested mode is unsupported.
+
 ## 4. Test matrix
 
 T04 onward require bootable content. This machine currently contains only
@@ -169,6 +197,7 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | Same baseline | `bin/tests --durations yes` | 63/71 passed, 8 failed | 3,773,593 assertions, 8 failures, all `MemoryTracker`; upstream test/implementation mismatch, not Wayland-related |
 | 2026-10-31 | Same baseline | `bin/eden-cli --help` | Fail (exit 139) | Upstream CLI bug: `SDL_AppInit` never sets `*appstate`, `SDL_AppQuit` dereferences null; Qt frontend unaffected |
 | — | Qt GUI baseline | Configure/build with `ENABLE_QT=ON` | Blocked | `qt6-charts` not installed |
+| 2026-10-31 | `tools/wayland/vk-present-probe.c` (standalone) | Default and `prime-run` enumeration | Pass (environment) | Both GPUs present on a real Wayland surface; `currentExtent` undefined; `FIFO_RELAXED` absent; PRIME changes GPU0 to NVIDIA |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan
