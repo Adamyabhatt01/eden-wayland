@@ -7,6 +7,7 @@
 #include <algorithm>
 #include <array>
 #include <limits>
+#include <string>
 #include <vector>
 
 #ifdef __ANDROID__
@@ -146,6 +147,7 @@ void Swapchain::Create(
     const auto physical_device = device.GetPhysical();
     const auto capabilities{physical_device.GetSurfaceCapabilitiesKHR(VkSurfaceKHR(surface))};
     if (capabilities.maxImageExtent.width == 0 || capabilities.maxImageExtent.height == 0) {
+        LOG_DEBUG(Render_Vulkan, "Skipping swapchain creation: surface reports empty extent");
         return;
     }
 
@@ -347,6 +349,24 @@ void Swapchain::CreateSwapchain(const VkSurfaceCapabilitiesKHR& capabilities) {
 #else
     image_view_format = VK_FORMAT_B8G8R8A8_UNORM;
 #endif
+
+    const auto undefined_extent{(std::numeric_limits<u32>::max)()};
+    LOG_INFO(Render_Vulkan,
+             "Swapchain: {}x{} | format: {} | color space: {} | present mode: {} | images: {}",
+             extent.width, extent.height, string_VkFormat(surface_format.format),
+             static_cast<int>(surface_format.colorSpace), string_VkPresentModeKHR(present_mode),
+             image_count);
+    LOG_INFO(Render_Vulkan,
+             "Surface: extent {}x{}..{}x{} (current {}) | images {}/{} | transform: {} | alpha: {}",
+             capabilities.minImageExtent.width, capabilities.minImageExtent.height,
+             capabilities.maxImageExtent.width, capabilities.maxImageExtent.height,
+             updated_capabilities.currentExtent.width == undefined_extent
+                 ? std::string{"compositor-defined"}
+                 : fmt::format("{}x{}", updated_capabilities.currentExtent.width,
+                               updated_capabilities.currentExtent.height),
+             capabilities.minImageCount, capabilities.maxImageCount,
+             string_VkSurfaceTransformFlagBitsKHR(capabilities.currentTransform),
+             string_VkCompositeAlphaFlagBitsKHR(alpha_flags));
 }
 
 void Swapchain::CreateSemaphores() {

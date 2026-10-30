@@ -89,6 +89,9 @@ vk::SurfaceKHR CreateSurface(
             LOG_ERROR(Render_Vulkan, "Failed to initialize Xlib surface");
             throw vk::Exception(VK_ERROR_INITIALIZATION_FAILED);
         }
+        LOG_INFO(Render_Vulkan, "Created Xlib surface (display={}, window={:#x})",
+                 static_cast<void*>(window_info.display_connection),
+                 uintptr_t(window_info.render_surface));
     }
     if (window_info.type == Core::Frontend::WindowSystemType::Wayland) {
         const VkWaylandSurfaceCreateInfoKHR wayland_ci{
@@ -103,6 +106,9 @@ vk::SurfaceKHR CreateSurface(
             LOG_ERROR(Render_Vulkan, "Failed to initialize Wayland surface");
             throw vk::Exception(VK_ERROR_INITIALIZATION_FAILED);
         }
+        LOG_INFO(Render_Vulkan, "Created Wayland surface (wl_display={}, wl_surface={})",
+                 static_cast<void*>(window_info.display_connection),
+                 static_cast<void*>(window_info.render_surface));
     }
 #endif
 
