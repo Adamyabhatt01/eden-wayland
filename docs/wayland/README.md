@@ -16,14 +16,14 @@ reproducibly.
 | 0 — Repository verification | Complete (`REPOSITORY_ACQUISITION.md`) |
 | 1 — Architecture audit | Complete (`ARCHITECTURE.md`) |
 | 2 — Implementation plan | Complete (`WAYLAND_IMPLEMENTATION_PLAN.md`) |
-| 3 — Baseline + native Wayland prototype | In progress: build pending system package install |
+| 3 — Baseline + native Wayland prototype | Complete: native Wayland Vulkan presentation verified on NVIDIA and Intel, plus XWayland; see `TESTING.md` and `evidence/` |
 | 4 — Reliability | Not started |
 | 5 — Optimization | Not started |
 | 6 — Packaging | Not started |
 | 7 — Final audit | Not started |
 
-No runtime claim is made yet. Runtime results are recorded only in
-`TESTING.md` and `BENCHMARKS.md` after they are actually observed.
+Runtime claims are limited to what `TESTING.md` records with logs and
+screenshots in `evidence/`. Performance comparisons remain unmeasured.
 
 ## Quick start (development)
 
@@ -79,6 +79,7 @@ See `UPSTREAM_SYNC.md` for synchronization rules and
 | `KNOWN_ISSUES.md` | Current defects, limitations and upstream quirks |
 | `UPSTREAM_SYNC.md` | Sync policy, state, conflict handling |
 | `PATCHES.md` | Categorized fork patch list |
+| `evidence/` | Raw logs and screenshots from executed tests |
 
 ## Legal
 

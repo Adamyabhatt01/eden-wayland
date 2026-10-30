@@ -1,0 +1,323 @@
+[   0.000197] Frontend <Info> qt_common/qt_common.cpp:243:Init: Eden Version: Eden Development Build | linux-wayland-e287b515ab-linux-wayland
+[   0.000208] Frontend <Info> qt_common/qt_common.cpp:171:LogRuntimes: Qt Compile: 6.12.0 Runtime: 6.12.0
+[   0.000209] Frontend <Info> qt_common/qt_common.cpp:259:Init: Host CPU: 12th Gen Intel(R) Core(TM) i5-12500H | AVX2 | FMA
+[   0.000238] Frontend <Info> qt_common/qt_common.cpp:261:Init: Host CPU Cores: 8
+[   0.000239] Frontend <Info> qt_common/qt_common.cpp:264:Init: Host CPU Threads: 16
+[   0.000247] Frontend <Info> qt_common/qt_common.cpp:265:Init: Host OS: Arch Linux
+[   0.000253] Frontend <Info> qt_common/qt_common.cpp:266:Init: Host RAM: 15.30 GiB
+[   0.000254] Frontend <Info> qt_common/qt_common.cpp:268:Init: Host Swap: 8.00 GiB
+[   0.001455] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.003618] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.062746] Input <Info> input_common/drivers/udp_client.cpp:144:UDPClient: Udp Initialization started
+[   0.062776] Input <Info> input_common/drivers/udp_client.cpp:338:StartCommunication: Starting communication with UDP input server on 127.0.0.1:26760
+[   0.313247] Input <Info> input_common/drivers/joycon.cpp:25:Joycons: Joycon driver Initialization started
+[  29.882051] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  29.882056] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  29.882063] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  29.882069] Frontend <Info> yuzu/main_window.cpp:4459:SetFirmwareVersion: Installed firmware: No firmware available
+[  29.882213] Frontend <Info> yuzu/main_window.cpp:4435:OnCheckGraphicsBackend: Qt platform: wayland | QT_QPA_PLATFORM: wayland | session: wayland | WAYLAND_DISPLAY: wayland-1 | DISPLAY: :1 | force_x11: false
+[  29.882215] Frontend <Info> yuzu/main_window.cpp:4443:OnCheckGraphicsBackend: Using native Wayland. XWayland remains available through the 'Force X11 as Graphics Backend' setting.
+[  29.882243] Common.Filesystem <Error> common/fs/fs.cpp:418:IterateDirEntries: Filesystem object at path=/home/user/projects/eden-wayland/build/wayland-run/user/nand/user/save/0000000000000000 does not exist
+[  29.893449] Render.Vulkan <Info> video_core/vulkan_common/vulkan_surface.cpp:109:CreateSurface: Created Wayland surface (wl_display=0x56347fc20b20, wl_surface=0x563480772c90)
+[  29.918048] Frontend <Info> yuzu/main_window.cpp:1963:BootGame: Eden starting...
+[  29.918415] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[  29.920166] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[  29.921256] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/hbmenu.nro.ini
+[  29.921357] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/hbmenu.nro.ini
+[  29.922589] Config <Info> common/settings.cpp:135:LogSettings: Eden Configuration:
+[  29.922590] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_unit: 2208904143
+[  29.922591] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_battery: 1178839674
+[  29.922592] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_engine: auto
+[  29.922592] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_device: auto
+[  29.922593] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.input_device: auto
+[  29.922593] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.volume: 100
+[  29.922593] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.audio_muted: false
+[  29.922594] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.dump_audio_commands: false
+[  29.922594] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_multi_core: true
+[  29.922594] Config <Info> common/settings.cpp:137:LogSettings: -- Core.memory_layout_mode: Memory_4Gb
+[  29.922595] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_speed_limit: true
+[  29.922595] Config <Info> common/settings.cpp:137:LogSettings: -- Core.speed_limit: 100
+[  29.922595] Config <Info> common/settings.cpp:137:LogSettings: -- Core.slow_speed_limit: 50
+[  29.922596] Config <Info> common/settings.cpp:137:LogSettings: -- Core.turbo_speed_limit: 200
+[  29.922596] Config <Info> common/settings.cpp:137:LogSettings: -- Core.current_speed_mode: Standard
+[  29.922597] Config <Info> common/settings.cpp:137:LogSettings: -- Core.sync_core_speed: false
+[  29.922597] Config <Info> common/settings.cpp:137:LogSettings: -- Core.enable_cheats_by_default: true
+[  29.922597] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_backend: Dynarmic
+[  29.922598] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_accuracy: Auto
+[  29.922598] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.use_custom_cpu_ticks: false
+[  29.922598] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_ticks: 16000
+[  29.922599] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_page_tables: true
+[  29.922599] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_block_linking: true
+[  29.922599] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_return_stack_buffer: true
+[  29.922600] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fast_dispatcher: true
+[  29.922600] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_context_elimination: true
+[  29.922600] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_const_prop: true
+[  29.922601] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_misc_ir: true
+[  29.922601] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_reduce_misalign_checks: true
+[  29.922601] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem: true
+[  29.922602] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem_exclusives: true
+[  29.922612] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_recompile_exclusives: true
+[  29.922613] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_ignore_memory_aborts: true
+[  29.922613] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_host_mmu: true
+[  29.922614] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_unfuse_fma: true
+[  29.922614] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_reduce_fp_error: true
+[  29.922615] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_standard_fpcr: true
+[  29.922615] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_inaccurate_nan: true
+[  29.922615] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_fastmem_check: true
+[  29.922616] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_global_monitor: true
+[  29.922616] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.backend: Vulkan
+[  29.922616] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vulkan_device: 0
+[  29.922617] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.resolution_setup: Res1X
+[  29.922617] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vsync: Fifo
+[  29.922617] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.scaling_filter: NearestNeighbor
+[  29.922618] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fsr_sharpening_slider: 25
+[  29.922618] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.aspect_ratio: R16_9
+[  29.922619] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.anti_aliasing: None
+[  29.922619] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_chain: 
+[  29.922619] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_preset: 
+[  29.922620] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_enabled: true
+[  29.922620] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen: false
+[  29.922620] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_multiplier: 2
+[  29.922621] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_target_rate: 0
+[  29.922621] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale_auto: true
+[  29.922621] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale: 75
+[  29.922622] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_queue_target: 0
+[  29.922622] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_dump_flow: false
+[  29.922623] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_gpu_emulation: true
+[  29.922623] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fullscreen_mode: Exclusive
+[  29.922623] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_red: 0
+[  29.922624] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_green: 0
+[  29.922624] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_blue: 0
+[  29.922624] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_accuracy: High
+[  29.922625] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dma_accuracy: Default
+[  29.922625] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_fence_behavior: Default
+[  29.922625] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vram_usage_mode: Conservative
+[  29.922626] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nvdec_emulation: Cpu
+[  29.922626] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.max_anisotropy: Automatic
+[  29.922626] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.accelerate_astc: Gpu
+[  29.922627] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_pacing_mode: Target_Auto
+[  29.922627] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.astc_recompression: Uncompressed
+[  29.922631] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sync_memory_operations: false
+[  29.922632] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.force_max_clock: false
+[  29.922632] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_disk_shader_cache: true
+[  29.922632] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vulkan_driver_pipeline_cache: true
+[  29.922633] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_compute_pipelines: false
+[  29.922633] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_video_framerate: false
+[  29.922634] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_reactive_flushing: true
+[  29.922634] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.barrier_feedback_loops: true
+[  29.922634] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_buffer_history: false
+[  29.922635] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.skip_cpu_inner_invalidation: false
+[  29.922635] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.async_presentation: false
+[  29.922635] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fix_bloom_effects: false
+[  29.922636] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.emulate_bgr565: false
+[  29.922636] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_shaders: false
+[  29.922637] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_texture_size: Large
+[  29.922637] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_stream_size: Medium
+[  29.922637] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_chunk_size: Medium
+[  29.922638] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_enabled: false
+[  29.922638] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dyna_state: EDS2
+[  29.922638] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sample_shading_fraction: 0
+[  29.922639] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vertex_input_dynamic_state: true
+[  29.922639] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.debug: false
+[  29.922639] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.shader_feedback: false
+[  29.922640] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nsight_aftermath: false
+[  29.922640] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_shader_loop_safety_checks: false
+[  29.922640] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.renderdoc_hotkey: false
+[  29.922641] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_buffer_reorder: false
+[  29.922641] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_cpu_time: Normal
+[  29.922642] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_gpu_time: Boost
+[  29.922642] Config <Info> common/settings.cpp:137:LogSettings: -- System.language_index: EnglishAmerican
+[  29.922642] Config <Info> common/settings.cpp:137:LogSettings: -- System.region_index: Usa
+[  29.922643] Config <Info> common/settings.cpp:137:LogSettings: -- System.time_zone_index: Auto
+[  29.922643] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_enabled: false
+[  29.922643] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc: 0
+[  29.922644] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_offset: 0
+[  29.922644] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed_enabled: false
+[  29.922644] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed: 0
+[  29.922645] Config <Info> common/settings.cpp:137:LogSettings: -- System.device_name: Eden
+[  29.922645] Config <Info> common/settings.cpp:137:LogSettings: -- System.current_user: 0
+[  29.922645] Config <Info> common/settings.cpp:137:LogSettings: -- System.use_docked_mode: Docked
+[  29.922648] Config <Info> common/settings.cpp:137:LogSettings: -- System.sound_index: Stereo
+[  29.922649] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.use_virtual_sd: true
+[  29.922649] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_inserted: false
+[  29.922650] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_current_game: false
+[  29.922650] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_path: 
+[  29.922651] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.ext_content_from_game_dirs: true
+[  29.922651] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_gdbstub: false
+[  29.922651] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gdbstub_port: 6543
+[  29.922652] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.program_args: 
+[  29.922652] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_exefs: false
+[  29.922652] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_nso: false
+[  29.922653] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_fs_access_log: false
+[  29.922653] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.reporting_services: false
+[  29.922653] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.quest_flag: false
+[  29.922654] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_dev_keys: false
+[  29.922654] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.extended_logging: false
+[  29.922654] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_debug_asserts: false
+[  29.922655] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_auto_stub: false
+[  29.922655] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_all_controllers: false
+[  29.922656] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.perform_vulkan_check: true
+[  29.922656] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_web_applet: true
+[  29.922656] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_level: Off
+[  29.922657] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_vulkan_calls: true
+[  29.922657] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_shader_dumps: false
+[  29.922657] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_memory_tracking: true
+[  29.922658] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_driver_debug: true
+[  29.922658] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_ring_buffer_size: 512
+[  29.922658] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.debug_knobs: 0
+[  29.922659] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_guest_shaders: false
+[  29.922659] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_macros: false
+[  29.922659] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_jit: false
+[  29.922660] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_hle: false
+[  29.922660] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.log_filter: *:Info
+[  29.922660] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.flush_line: false
+[  29.922661] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.censor_username: true
+[  29.922661] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.first_launch: true
+[  29.922662] Config <Info> common/settings.cpp:137:LogSettings: -- Network.network_interface: 
+[  29.922662] Config <Info> common/settings.cpp:137:LogSettings: -- Network.airplane_mode: true
+[  29.922662] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.web_api_url: api.ynet-fun.xyz
+[  29.922663] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.eden_username: Eden
+[  29.922665] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.disable_wgi_xinput: false
+[  29.922666] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_raw_input: false
+[  29.922666] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.controller_navigation: true
+[  29.922667] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_joycon_driver: true
+[  29.922667] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_procon_driver: false
+[  29.922667] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.vibration_enabled: true
+[  29.922668] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_accurate_vibrations: false
+[  29.922668] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.motion_enabled: true
+[  29.922669] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.udp_input_servers: 127.0.0.1:26760
+[  29.922669] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_udp_controller: false
+[  29.922669] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.pause_tas_on_load: true
+[  29.922670] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_enable: false
+[  29.922670] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_loop: false
+[  29.922670] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_show_recording_dialog: true
+[  29.922671] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning: false
+[  29.922671] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_sensitivity: 50
+[  29.922671] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_enabled: false
+[  29.922672] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_x_sensitivity: 50
+[  29.922672] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_y_sensitivity: 50
+[  29.922672] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_deadzone_counterweight: 20
+[  29.922673] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_decay_strength: 18
+[  29.922673] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_min_decay: 6
+[  29.922673] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.emulate_analog_keyboard: false
+[  29.922674] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.keyboard_enabled: false
+[  29.922674] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.debug_pad_enabled: false
+[  29.922675] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_device: min_x:100,min_y:50,max_x:1800,max_y:850
+[  29.922675] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_from_button_map: 0
+[  29.922675] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ring_controller: true
+[  29.922676] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ir_sensor: false
+[  29.922676] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.ir_sensor_device: auto
+[  29.922676] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.random_amiibo_id: false
+[  29.922677] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.cabinet_applet_mode: LLE
+[  29.922677] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.controller_applet_mode: HLE
+[  29.922677] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.data_erase_applet_mode: HLE
+[  29.922678] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.error_applet_mode: LLE
+[  29.922678] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.net_connect_applet_mode: LLE
+[  29.922679] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.player_select_applet_mode: LLE
+[  29.922679] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.swkbd_applet_mode: HLE
+[  29.922679] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.mii_edit_applet_mode: LLE
+[  29.922682] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.web_applet_mode: HLE
+[  29.922683] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.shop_applet_mode: HLE
+[  29.922683] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.photo_viewer_applet_mode: LLE
+[  29.922683] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.offline_web_applet_mode: LLE
+[  29.922684] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.login_share_applet_mode: HLE
+[  29.922684] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.wifi_web_auth_applet_mode: HLE
+[  29.922685] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.my_page_applet_mode: LLE
+[  29.922685] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.enable_overlay: false
+[  29.922686] Config <Info> common/settings.cpp:140:LogSettings: CacheDir: /home/user/projects/eden-wayland/build/wayland-run/user/cache
+[  29.922687] Config <Info> common/settings.cpp:141:LogSettings: ConfigDir: /home/user/projects/eden-wayland/build/wayland-run/user/config
+[  29.922688] Config <Info> common/settings.cpp:142:LogSettings: LoadDir: /home/user/projects/eden-wayland/build/wayland-run/user/load
+[  29.922688] Config <Info> common/settings.cpp:143:LogSettings: NANDDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[  29.922689] Config <Info> common/settings.cpp:144:LogSettings: SaveDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[  29.922690] Config <Info> common/settings.cpp:145:LogSettings: SDMCDir: /home/user/projects/eden-wayland/build/wayland-run/user/sdmc
+[  30.032938] Core <Info> core/core.cpp:332:Load: Loading nx-hbmenu (0000000000000000) ...
+[  30.042966] Render.Vulkan <Info> video_core/vulkan_common/vulkan_surface.cpp:109:CreateSurface: Created Wayland surface (wl_display=0x56347fc20b20, wl_surface=0x56348010a6d0)
+[  30.044955] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_EXT_depth_range_unrestricted
+[  30.044960] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_EXT_external_memory_host
+[  30.044962] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_EXT_robustness2
+[  30.044963] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_NV_geometry_shader_passthrough
+[  30.044964] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_NV_viewport_array2
+[  30.044965] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_NV_viewport_swizzle
+[  30.044972] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1170:GetSuitability: Device doesn't support feature leastRepresentableValueForceUnormRepresentation
+[  30.044973] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1170:GetSuitability: Device doesn't support feature formatA4B4G4R4
+[  30.044976] Render.Vulkan <Warning> video_core/vulkan_common/vulkan_device.cpp:446:RemoveExtensionFeatureIfUnsuitable: Removing features for unsuitable extension VK_EXT_depth_bias_control
+[  30.058651] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:354:CreateSwapchain: Swapchain: 1280x720 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 4
+[  30.058658] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:359:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 3/0 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[  30.421029] Render.Vulkan <Warning> video_core/renderer_vulkan/vk_pipeline_cache.cpp:500:PipelineCache: maxVertexInputAttributes is too low: 29 < 32
+[  30.421053] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:508:PipelineCache: DynamicState setting value: 2
+[  30.421091] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:285:Report: Driver: Intel open-source Mesa driver 26.2.5
+[  30.421093] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:286:Report: Device: Intel(R) Iris(R) Xe Graphics (ADL GT2)
+[  30.421093] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:287:Report: Vulkan: 1.4.354
+[  30.421095] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:288:Report: Available VRAM: 4.00 GiB
+[  30.421097] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:291:Report: Window system: Wayland
+[  30.421098] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:292:Report: Render surface: 0x56348010a6d0 | scale: 1.00
+[  30.421098] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:296:Report: Swapchain: 1280x720 | format: 44 | images: 4
+[  30.424253] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[  30.430336] Audio.Sink <Info> audio_core/sink/sdl3_sink.cpp:42:InitializeAudio: SDL audio driver: pipewire
+[  30.432979] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[  30.433504] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.433510] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.433521] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.480004] Core <Info> core/game_settings.cpp:133:LoadOverrides: Applied game settings for title ID 0000000000000000 on OS 1, GPU vendor 2 (ANV)
+[  30.480354] Frontend <Info> yuzu/main_window.cpp:2113:BootGame: Booting game: 0000000000000000 | nx-hbmenu (64-bit) | 
+[  30.481202] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.481206] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.481214] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.481243] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.481244] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.481246] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.481507] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'TimeZoneBinary' (0x10000000000080e).
+[  30.481931] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.482018] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:519:GetExternalSteadyClockSourceId: called, clock_source_id=b0af6547-174f-c979-ae74-a997709116e1
+[  30.482029] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:536:GetUserSystemClockContext: called
+[  30.482036] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:923:GetNetworkSystemClockContext: called
+[  30.482066] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:940:IsUserSystemClockAutomaticCorrectionEnabled: called, out_automatic_correction_enabled=true
+[  30.482067] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1371:GetUserSystemClockAutomaticCorrectionUpdatedTime: called
+[  30.482068] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:897:GetDeviceTimeZoneLocationName: called
+[  30.483670] Frontend <Warning> qt_common/gamemode.cpp:24:Start: dlopen failed - libgamemode.so: cannot open shared object file: No such file or directory
+[  30.484123] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1354:GetDeviceTimeZoneLocationUpdatedTime: called
+[  30.484580] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:544:SetUserSystemClockContext: called
+[  30.485091] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:931:SetNetworkSystemClockContext: called
+[  30.485552] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:950:SetUserSystemClockAutomaticCorrectionEnabled: called, out_automatic_correction_enabled=true
+[  30.485894] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1379:SetUserSystemClockAutomaticCorrectionUpdatedTime: called
+[  30.486726] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.486730] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.486738] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.489246] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontStandard' (0x100000000000811).
+[  30.489538] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.489646] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseSimple' (0x100000000000814).
+[  30.489831] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.489888] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseSimple' (0x100000000000814).
+[  30.489962] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.490031] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseTraditional' (0x100000000000813).
+[  30.490066] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.490117] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontKorean' (0x100000000000812).
+[  30.490150] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.490204] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontNintendoExtension' (0x100000000000810).
+[  30.490207] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.490210] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontNintendoExtension' (0x100000000000810).
+[  30.490212] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492209] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontStandard' (0x100000000000811).
+[  30.492270] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492332] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseSimple' (0x100000000000814).
+[  30.492467] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492533] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseSimple' (0x100000000000814).
+[  30.492609] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492683] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontChineseTraditional' (0x100000000000813).
+[  30.492725] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492784] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontKorean' (0x100000000000812).
+[  30.492821] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492871] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontNintendoExtension' (0x100000000000810).
+[  30.492877] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492880] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'FontNintendoExtension' (0x100000000000810).
+[  30.492882] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.492920] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.492921] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.492926] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.493026] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.493027] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.493029] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.493031] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  30.493031] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  30.493033] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  30.581208] Service.SET <Info> core/hle/service/set

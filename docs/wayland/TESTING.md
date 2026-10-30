@@ -67,7 +67,8 @@ Observed on 2026-10-31 (Qt 6.12.0):
 
 ## 3. Vulkan proof
 
-Eden must log (Phase 3 diagnostics):
+Eden logs the following (implemented by the A2 diagnostics patch and observed
+in the runs below):
 
 - `WindowSystemType::Wayland`;
 - non-null `wl_display` and `wl_surface`;
@@ -116,12 +117,21 @@ requested mode is unsupported.
 
 ## 4. Test matrix
 
-T04 onward require bootable content. This machine currently contains only
-commercial NSP dumps under `~/Downloads`; those are out of scope, will not be
-read, copied, or bundled. A legally redistributable homebrew NRO or a
-user-supplied legal title is required to exercise the Vulkan surface and
-swapchain. Until then T04+ remain **Not run**, and no Vulkan-presentation
-claim may be made.
+T04 onward require bootable content. The commercial NSP files under
+`~/Downloads` were never read, copied or bundled. Vulkan presentation was
+exercised with **nx-hbmenu v3.6.1** (GPLv2, SHA-256
+`6cf6d130515723ebe0041c2479420caf9726895087439ff7b2e528c2ed39c100`), fetched to
+`/tmp/eden-homebrew/` and never committed. Started as a bare NRO it shows its
+own `launchInit() failed` page; that is hbmenu's normal response to missing
+boot arguments and still drives the full render/present path. No keys,
+firmware or commercial content were added to the repository.
+
+Observed device selection on this laptop: Eden sorts physical devices
+(discrete first, then NVIDIA/AMD/Intel, `vulkan_wrapper.cpp:50-68`), so
+`vulkan_device=0` selects the RTX 3050 even though `vulkaninfo` lists Intel as
+GPU0. The Intel run below hides the NVIDIA ICD with
+`VK_LOADER_DRIVERS_SELECT='*intel*'`, which is a test technique, not a fork
+feature.
 
 
 | ID | Scenario | Expected | Status |
@@ -129,13 +139,13 @@ claim may be made.
 | T01 | Launch GUI, no game, native Wayland | `platformName=wayland`, `xwayland=false`, no warning dialog | Pass (GUI only) |
 | T02 | Launch with `QT_QPA_PLATFORM=xcb` | XWayland window, same functionality | Pass (GUI only) |
 | T03 | Force X11 via setting, restart | `platformName=xcb` persisted | Pass (GUI only) |
-| T04 | Render a frame (legal content or self-test) | Surface + swapchain created, frames presented | Not run |
-| T05 | Intel iGPU only | Intel device selected, present works | Not run |
-| T06 | NVIDIA dGPU via PRIME | NVIDIA device selected, present works | Not run |
+| T04 | Render a frame (legal content or self-test) | Surface + swapchain created, frames presented | Pass (hbmenu NRO) |
+| T05 | Intel iGPU only | Intel device selected, present works | Pass (loader-selected Intel) |
+| T06 | NVIDIA dGPU via PRIME | NVIDIA device selected, present works | Pass (default device sort selects NVIDIA) |
 | T07 | Explicit GPU selection in settings | Chosen present-capable GPU used; invalid choice explains and falls back | Not run |
-| T08 | Window resize (many sizes, rapid) | Swapchain recreated, no validation errors, no crash | Not run |
+| T08 | Window resize (many sizes, rapid) | Swapchain recreated, no validation errors, no crash | Pass (single compositor-driven resize) |
 | T09 | Minimise / restore | No hang, no stale frame, swapchain valid after restore | Not run |
-| T10 | Fullscreen on/off | `showFullScreen()` works, state restored | Not run |
+| T10 | Fullscreen on/off | `showFullScreen()` works, state restored | Partial (enter observed; toggle-off not exercised) |
 | T11 | Workspace switch / focus loss | Input released, frame loop continues or pauses correctly, focus restore works | Not run |
 | T12 | Monitor/scale change (if permitted) | Extent and DPR updated, no mismatch | Not run |
 | T13 | Fractional scale 1.25/1.5 (if permitted) | Rounded extents, aligned input, no validation errors | Not run |
@@ -144,10 +154,10 @@ claim may be made.
 | T16 | Keyboard/mouse/touch | Input reaches emulation; focus loss releases keys | Not run |
 | T17 | Suspend/resume via logind | Emulation pauses/resumes; renderer survives | Not run |
 | T18 | Stop/start game repeatedly | Renderer/surface recreated cleanly; no leaks/validation errors | Not run |
-| T19 | Close during emulation | Clean shutdown, no hang | Not run |
-| T20 | XWayland fallback full session | Same as native matrix on `xcb` | Not run |
-| T21 | Validation layers enabled | No errors; warnings triaged | Not run |
-| T22 | Save data isolation | Portable `user/` used; existing data untouched | Not run |
+| T19 | Close during emulation | Clean shutdown, no hang | Pass |
+| T20 | XWayland fallback full session | Same as native matrix on `xcb` | Pass (hbmenu NRO) |
+| T21 | Validation layers enabled | No errors; warnings triaged | Pass with triaged upstream warnings (no WSI errors) |
+| T22 | Save data isolation | Portable `user/` used; existing data untouched | Pass (portable profile; existing install not touched) |
 | T23 | Upstream regression after sync | Matrix passes vs previous known-good | Not run |
 
 ## 5. Validation layers
@@ -170,13 +180,35 @@ Procedure:
 `VK_INSTANCE_LAYERS` cannot override Eden's hardcoded layer list; use Eden's
 debug setting.
 
+Observed on 2026-10-31 (NVIDIA, native Wayland, hbmenu, validation 1.4.363
+extracted from the Arch package to `/tmp/vk-validation-root`; layer confirmed
+loaded):
+
+- **No swapchain, surface or present VUIDs.** The whole WSI path (Wayland
+  surface creation, swapchain create/recreate, acquire, present) produced no
+  validation messages.
+- `vkCreateDevice`: `VK_KHR_shader_quad_control` is enabled without its
+  required dependency `VK_KHR_shader_maximal_reconvergence`.
+- `vkCreateShaderModule`: SPIR-V declares `StencilExportEXT` /
+  `SPV_EXT_shader_stencil_export` without `VK_EXT_shader_stencil_export`
+  enabled.
+- `vkCreateImage` / `vkCreateImageView` on `VK_FORMAT_R5G6B5_UNORM_PACK16`
+  with `VK_IMAGE_USAGE_STORAGE_BIT`: the driver reports the combination as
+  unsupported and the view inherits storage usage
+  (`VUID-VkImageViewCreateInfo-usage-02275`). The layer stops repeating this
+  VUID after its 10-message duplicate limit.
+- All of the above originate in the upstream renderer/device setup, not in
+  the fork's Wayland or diagnostics patches; they also affect XWayland. They
+  are recorded as K20 in `KNOWN_ISSUES.md` and are not blockers for the
+  Wayland prototype.
+
 ## 6. Diagnostics tooling
 
 | Tool | Purpose | Status |
 |---|---|---|
-| `tools/wayland/diag.sh` | Environment/session/GPU report | To add |
+| `tools/wayland/diag.sh` | Environment/session/GPU report | Available |
 | `vulkaninfo --summary` | GPU/driver/extension inventory | Available |
-| `vulkan-validation-layers` | API correctness | Missing (install) |
+| `vulkan-validation-layers` | API correctness | Available locally (extracted Arch 1.4.363 to `/tmp/vk-validation-root`) |
 | MangoHud (`MANGOHUD=1`) | FPS/frame time/GPU metrics | Available |
 | `WAYLAND_DEBUG=1` | Protocol trace (short captures) | Available |
 | `hyprctl clients -j` | XWayland vs native proof | Available |
@@ -213,6 +245,13 @@ Tests must be runnable without touching `~/.config/eden` or
 
 ## 8. Results log
 
+Methodology note: Eden's file logger buffers until a graceful shutdown. While
+the process runs, `eden_log.txt` can omit recent swapchain re-creations; read
+the log only after closing Eden through the window/confirmation dialog (SIGINT
+kills without flushing, SIGTERM may hang). The XWayland row below shows the
+effect: `100x30` was the only entry during the run, while the flushed log also
+contains `908x975` and `1016x975`.
+
 | Date | Build | Scenario | Result | Evidence |
 |---|---|---|---|---|
 | 2026-10-31 | Official v0.2.1 AppImage (extracted, isolated HOME) | Default launch on Hyprland | Observed: forced XWayland | `hyprctl`: class `eden`, `xwayland=true`; stderr "Wayland is disabled due to known issues" (hook sets `QT_QPA_PLATFORM=xcb`) |
@@ -230,7 +269,15 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | Fork with A1+A2 (`e6cca3f89f`, `de2d61cdfa`), RelWithDebInfo; binary version string is stale (`e90121aeec`) because CMake was configured earlier | T01: GUI launch, native Wayland, isolated `user/` | Pass (GUI only) | Log: `Qt platform: wayland \| session: wayland \| WAYLAND_DISPLAY: wayland-1 \| DISPLAY: :1 \| force_x11: false` and `Using native Wayland. XWayland remains available...`; `hyprctl`: class `dev.eden_emu.eden`, `xwayland=false`; warning dialog absent |
 | 2026-10-31 | Same fork build | T02: GUI launch, `EDEN_DISPLAY=x11` (`QT_QPA_PLATFORM=xcb`) | Pass (GUI only) | Log: `Qt platform: xcb \| session: wayland \| ... \| force_x11: false`; `hyprctl`: class `eden`, `xwayland=true` |
 | 2026-10-31 | Same fork build | T03: `gui_force_x11=true` with ambient `QT_QPA_PLATFORM=wayland` | Pass (GUI only) | `hyprctl`: class `eden`, `xwayland=true`; the explicit setting overrode the ambient Qt platform. Test config removed afterwards |
-| 2026-10-31 | Same fork build | A2 Vulkan diagnostics (surface/swapchain logs) | Not run | Requires renderer initialization, which requires bootable content; no claim made |
+| 2026-10-31 | Same fork build | A2 Vulkan diagnostics (surface/swapchain logs) | Pass | Diagnostics appear once a renderer exists; see the hbmenu rows below |
+| 2026-10-31 | Fork `41ad87851a` (A1+A2+B1), RelWithDebInfo | T04/T06: native Wayland, hbmenu NRO, default device sort | Pass | `Qt platform: wayland`, `Created Wayland surface`, `Window system: Wayland`, `Driver: NVIDIA 615.78.8.0`, `Device: NVIDIA GeForce RTX 3050 Laptop GPU`, swapchain `1280x720 B8G8R8A8_UNORM FIFO 3 images`, "extent 1x1..16384x16384 (current compositor-defined)", 60 FPS; `hyprctl`: `xwayland=false`. Evidence: `docs/wayland/evidence/2026-10-31-native-wayland-nvidia.log` |
+| 2026-10-31 | Same build | T05: Intel only, `VK_LOADER_DRIVERS_SELECT='*intel*'` | Pass | `Driver: Intel open-source Mesa driver 26.2.5`, `Device: Intel(R) Iris(R) Xe Graphics (ADL GT2)`, swapchain `1280x720`, 4 images, 60 FPS. Evidence: `...native-wayland-intel.log` |
+| 2026-10-31 | Same build | T08: compositor resize, native Wayland, hbmenu | Pass | Swapchain recreated `1280x720` → `908x975` → `640x975`; presentation continued; screenshots `...-nvidia-resized.png` |
+| 2026-10-31 | Same build | T10: fullscreen, native Wayland, hbmenu | Partial | Fullscreen swapchain recreated at `1920x1017`, 60 FPS, status bar `DOCKED`; returning to windowed was not exercised. Evidence: `...-nvidia-fullscreen.png` |
+| 2026-10-31 | Same build | T19: close during emulation | Pass | Confirmation dialog appeared, Return accepted; log ends with `ForceStop: Force stopping EmuThread`, config written; `gamemode` `dlopen` warning expected (library not installed); no crash dump |
+| 2026-10-31 | Same build | T20: XWayland full session, hbmenu | Pass | `Qt platform: xcb`, `Created Xlib surface`, `Window system: X11`, swapchain `100x30` → `908x975` → `1016x975` (after compositor resize), 60 FPS; `hyprctl`: class `eden`, `xwayland=true`. Evidence: `docs/wayland/evidence/2026-10-31-xwayland.log` |
+| 2026-10-31 | Same build, validation layers 1.4.363 (`Renderer.debug=true`) | T21: validation during hbmenu boot and presentation | Pass with triaged warnings | Zero swapchain/surface/present VUIDs. Warnings are upstream renderer/device issues (quad-control dependency, stencil-export SPIR-V, R5G6B5 storage usage); classified in §5. Evidence: `...native-wayland-validation.log` |
+| 2026-10-31 | Same build | T22: portable profile isolation | Pass | All logs/config/saves stayed under `build/wayland-run/user/`; `~/.config/eden` and `~/.local/share/eden` untouched; `renderer_debug` reverted to `false` after the validation run |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan
