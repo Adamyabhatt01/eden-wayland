@@ -39,6 +39,32 @@ independent signals:
    `xdg_toplevel`, and commit buffers. Do not capture full traces for long
    runs (large output).
 
+### Qt native-resource probe (no Eden build required)
+
+`tools/wayland/qt-wl-native-probe.cpp` reproduces Eden's handle extraction
+for a top-level window and for a native child widget with the same attributes
+as `RenderWidget`:
+
+```sh
+inc=$(pkg-config --variable=includedir Qt6Gui)
+ver=$(qmake6 -query QT_VERSION)
+c++ -std=c++20 -O2 -fPIC -I"$inc/QtGui/$ver/QtGui" \
+  -o /tmp/qt-wl-native-probe tools/wayland/qt-wl-native-probe.cpp \
+  $(pkg-config --cflags --libs Qt6Gui Qt6Widgets)
+QT_QPA_PLATFORM=wayland /tmp/qt-wl-native-probe
+QT_QPA_PLATFORM=xcb /tmp/qt-wl-native-probe
+```
+
+Observed on 2026-10-31 (Qt 6.12.0):
+
+- Wayland: top-level and child both return non-null `display` and `surface`;
+  `WAYLAND_DEBUG=client` shows `wl_subcompositor.get_subsurface`. Exit 0.
+- XCB: `display` non-null, `surface` null (expected; Eden uses `winId()`).
+  Exit 0.
+- Hyprland tiled the window to 905x1020 despite a 400x300 request.
+- After the event loop exits, the Wayland surface resource is null; query only
+  while the window is live.
+
 ## 3. Vulkan proof
 
 Eden must log (Phase 3 diagnostics):
@@ -198,6 +224,7 @@ Tests must be runnable without touching `~/.config/eden` or
 | 2026-10-31 | Same baseline | `bin/eden-cli --help` | Fail (exit 139) | Upstream CLI bug: `SDL_AppInit` never sets `*appstate`, `SDL_AppQuit` dereferences null; Qt frontend unaffected |
 | — | Qt GUI baseline | Configure/build with `ENABLE_QT=ON` | Blocked | `qt6-charts` not installed |
 | 2026-10-31 | `tools/wayland/vk-present-probe.c` (standalone) | Default and `prime-run` enumeration | Pass (environment) | Both GPUs present on a real Wayland surface; `currentExtent` undefined; `FIFO_RELAXED` absent; PRIME changes GPU0 to NVIDIA |
+| 2026-10-31 | `tools/wayland/qt-wl-native-probe.cpp` (Qt 6.12) | Wayland and XCB native resources | Pass | Wayland: top-level + child `display`/`surface` non-null, `wl_subsurface` bound; XCB: `surface` null as expected |
 
 These rows describe the **official binary**, not the fork. They prove the
 environment and Qt Wayland path; they do not prove emulator Vulkan

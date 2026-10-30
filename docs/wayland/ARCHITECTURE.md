@@ -353,7 +353,7 @@ paced by `Present/Framegen::FrameGenPacer::Plan`
 | `wl_display`/`wl_surface` extraction from Qt | Present | `qt_common.cpp:125-130` |
 | `VK_KHR_wayland_surface` instance extension | Present | `vulkan_instance.cpp:66-68` |
 | `vkCreateWaylandSurfaceKHR` | Present | `vulkan_surface.cpp:93-106` |
-| Native child surface (`wl_subsurface`) | Present, unverified at runtime | `bootmanager.cpp:78-112`, `866-874` |
+| Native child surface (`wl_subsurface`) | Verified by standalone Qt 6.12 probe; Eden path pending boot | `bootmanager.cpp:78-112`, `866-874`; `tools/wayland/qt-wl-native-probe.cpp` |
 | Wayland-first default policy | **Absent** | `main.cpp:155-160`, `main_window.cpp:4430-4477` |
 | XWayland fallback | Present (`gui_force_x11` / env override) | `main.cpp:159-160`, `gui_settings.cpp:12-24` |
 | Present-mode selection for Wayland | Generic only; no Wayland-specific handling | `vk_swapchain.cpp:44-91` |
@@ -394,6 +394,22 @@ Runtime observation (official v0.2.1 AppImage, isolated run, 2026-10-31):
 - This validates the GUI/windowing path on Hyprland but **not** the emulator
   Vulkan surface: no title was booted, so `VkSurfaceKHR` and swapchain
   presentation remain unverified (T04+).
+
+Qt native-resource probe (Qt 6.12, 2026-10-31):
+
+- `tools/wayland/qt-wl-native-probe.cpp` creates a top-level widget and a
+  native child widget (same attributes as `RenderWidget`). On `wayland`,
+  both return non-null `nativeResourceForWindow("display")` and
+  `("surface")`; `WAYLAND_DEBUG=client` shows
+  `wl_subcompositor.get_subsurface`.
+- On `xcb`, `"display"` is non-null and `"surface"` is null, which matches
+  Eden's design: non-Wayland paths use `winId()` as the render surface.
+- Hyprland tiled the probe's top-level to 905x1020 despite a requested
+  400x300 geometry, confirming that window geometry is compositor-controlled.
+- Handles are valid only while the window is shown; after the event loop
+  exits the surface resource becomes null. Eden extracts WSI while the render
+  target is live, so this is expected, but diagnostics must not query after
+  teardown.
 
 ## 8. Technical risks
 
