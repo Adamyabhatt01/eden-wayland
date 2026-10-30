@@ -428,6 +428,15 @@ target_link_libraries(video_core PRIVATE sirit::sirit)
 # Header-only stuff needed by all dependent targets
 target_link_libraries(video_core PUBLIC Vulkan::Headers Vulkan::UtilityHeaders GPUOpen::VulkanMemoryAllocator)
 
+# VK_USE_PLATFORM_WAYLAND_KHR pulls in <wayland-client.h>. Only the headers are
+# needed because the emulator passes native wl_display/wl_surface handles through
+# without calling the client library itself.
+if (UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKUOS)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(WAYLAND_CLIENT REQUIRED wayland-client)
+    target_include_directories(video_core PRIVATE ${WAYLAND_CLIENT_INCLUDE_DIRS})
+endif()
+
 if (ENABLE_NSIGHT_AFTERMATH)
     if (NOT DEFINED ENV{NSIGHT_AFTERMATH_SDK})
         message(FATAL_ERROR "Environment variable NSIGHT_AFTERMATH_SDK has to be provided")
