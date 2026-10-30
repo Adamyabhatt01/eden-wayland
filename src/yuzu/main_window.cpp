@@ -4428,50 +4428,20 @@ void MainWindow::OnCheckFirmwareDecryption() {
 
 #ifdef __unix__
 void MainWindow::OnCheckGraphicsBackend() {
-    const QString platformName = QGuiApplication::platformName();
-    const QByteArray qtPlatform = qgetenv("QT_QPA_PLATFORM");
+    const QString platform_name = QGuiApplication::platformName();
+    const bool is_wayland =
+        platform_name.startsWith(QStringLiteral("wayland"), Qt::CaseInsensitive);
 
-    if (platformName == QStringLiteral("xcb") || qtPlatform == "xcb")
-        return;
+    LOG_INFO(Frontend,
+             "Qt platform: {} | QT_QPA_PLATFORM: {} | session: {} | WAYLAND_DISPLAY: {} | "
+             "DISPLAY: {} | force_x11: {}",
+             platform_name.toStdString(), qgetenv("QT_QPA_PLATFORM").toStdString(),
+             qgetenv("XDG_SESSION_TYPE").toStdString(), qgetenv("WAYLAND_DISPLAY").toStdString(),
+             qgetenv("DISPLAY").toStdString(), GraphicsBackend::GetForceX11());
 
-    const bool isWayland =
-        platformName.startsWith(QStringLiteral("wayland"), Qt::CaseInsensitive) ||
-        qtPlatform.startsWith("wayland");
-    if (!isWayland)
-        return;
-
-    const bool currently_hidden = UISettings::values.gui_hide_backend_warning.GetValue();
-    if (currently_hidden)
-        return;
-
-    QMessageBox msgbox(this);
-    msgbox.setWindowTitle(tr("Wayland Detected!"));
-    msgbox.setText(
-        tr("Wayland is known to have significant performance issues and mysterious bugs.\n"
-           "It's recommended to use X11 instead.\n\n"
-           "Would you like to force it for future launches?"));
-    msgbox.setIcon(QMessageBox::Warning);
-
-    QPushButton* okButton = msgbox.addButton(tr("Use X11"), QMessageBox::AcceptRole);
-    msgbox.addButton(tr("Continue with Wayland"), QMessageBox::RejectRole);
-    msgbox.setDefaultButton(okButton);
-
-    QCheckBox* cb = new QCheckBox(tr("Don't show again"), &msgbox);
-    cb->setChecked(currently_hidden);
-    msgbox.setCheckBox(cb);
-
-    msgbox.exec();
-
-    const bool hide = cb->isChecked();
-    if (hide != currently_hidden) {
-        UISettings::values.gui_hide_backend_warning.SetValue(hide);
-    }
-
-    if (msgbox.clickedButton() == okButton) {
-        UISettings::values.gui_force_x11.SetValue(true);
-        GraphicsBackend::SetForceX11(true);
-        QMessageBox::information(this, tr("Restart Required"),
-                                 tr("Restart Eden to apply the X11 backend."));
+    if (is_wayland) {
+        LOG_INFO(Frontend, "Using native Wayland. XWayland remains available through the "
+                           "'Force X11 as Graphics Backend' setting.");
     }
 }
 #endif

@@ -150,14 +150,19 @@ int main(int argc, char* argv[]) {
 #endif
 
 #ifdef __unix__
-    // Set the DISPLAY variable in order to open web browsers
-    // TODO (lat9nq): Find a better solution for AppImages to start external applications
-    if (QString::fromLocal8Bit(qgetenv("DISPLAY")).isEmpty()) {
+    // Set DISPLAY only for non-Wayland sessions. Setting it on a pure Wayland
+    // session makes external tools attempt a nonexistent X server.
+    const bool is_wayland_session =
+        !qEnvironmentVariableIsEmpty("WAYLAND_DISPLAY") ||
+        qgetenv("XDG_SESSION_TYPE").compare("wayland", Qt::CaseInsensitive) == 0;
+    if (!is_wayland_session && QString::fromLocal8Bit(qgetenv("DISPLAY")).isEmpty()) {
         qputenv("DISPLAY", ":0");
     }
 
-    if (GraphicsBackend::GetForceX11() && qEnvironmentVariableIsEmpty("QT_QPA_PLATFORM"))
+    // An explicit Eden setting wins over an ambient QT_QPA_PLATFORM value.
+    if (GraphicsBackend::GetForceX11()) {
         qputenv("QT_QPA_PLATFORM", "xcb");
+    }
 
     // Fix the Wayland appId. This needs to match the name of the .desktop file without the .desktop
     // suffix.

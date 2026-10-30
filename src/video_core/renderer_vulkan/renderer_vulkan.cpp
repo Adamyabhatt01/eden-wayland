@@ -52,6 +52,27 @@ constexpr VkExtent2D CaptureImageSize{
     .height = VideoCore::Capture::LinearHeight,
 };
 
+const char* WindowSystemName(Core::Frontend::WindowSystemType type) {
+    using Core::Frontend::WindowSystemType;
+    switch (type) {
+    case WindowSystemType::Headless:
+        return "Headless";
+    case WindowSystemType::Windows:
+        return "Windows";
+    case WindowSystemType::X11:
+        return "X11";
+    case WindowSystemType::Wayland:
+        return "Wayland";
+    case WindowSystemType::Cocoa:
+        return "Cocoa";
+    case WindowSystemType::Android:
+        return "Android";
+    case WindowSystemType::Xcb:
+        return "Xcb";
+    }
+    return "Unknown";
+}
+
 #ifdef HAS_LSFG
 [[nodiscard]] VkExtent2D GuestExtent(std::span<const Tegra::FramebufferConfig> framebuffers) {
     if (framebuffers.empty()) {
@@ -265,6 +286,16 @@ void RendererVulkan::Report() const {
     LOG_INFO(Render_Vulkan, "Device: {}", model_name);
     LOG_INFO(Render_Vulkan, "Vulkan: {}", api_version);
     LOG_INFO(Render_Vulkan, "Available VRAM: {:.2f} GiB", available_vram);
+
+    const auto& window_info = render_window.GetWindowInfo();
+    LOG_INFO(Render_Vulkan, "Window system: {}", WindowSystemName(window_info.type));
+    LOG_INFO(Render_Vulkan, "Render surface: {} | scale: {:.2f}",
+             static_cast<const void*>(window_info.render_surface),
+             window_info.render_surface_scale);
+    const VkExtent2D swapchain_extent = swapchain.GetExtent();
+    LOG_INFO(Render_Vulkan, "Swapchain: {}x{} | format: {} | images: {}", swapchain_extent.width,
+             swapchain_extent.height, static_cast<int>(swapchain.GetImageFormat()),
+             swapchain.GetImageCount());
 }
 
 vk::Buffer RendererVulkan::RenderToBuffer(std::span<const Tegra::FramebufferConfig> framebuffers,
