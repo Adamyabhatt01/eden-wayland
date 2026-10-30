@@ -128,15 +128,68 @@ std::string BuildCommaSeparatedExtensions(
     return fmt::format("{}", fmt::join(available_extensions, ","));
 }
 
+bool CanPresent(const vk::PhysicalDevice& device, VkSurfaceKHR surface) {
+    const std::vector families = device.GetQueueFamilyProperties();
+    for (u32 index = 0; index < static_cast<u32>(families.size()); ++index) {
+        if (families[index].queueCount != 0 && device.GetSurfaceSupportKHR(index, surface)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+std::string DescribeDevice(const vk::PhysicalDevice& device) {
+    const VkPhysicalDeviceProperties properties = device.GetProperties();
+    return fmt::format("{} (vendor {:#06x}, type {})", properties.deviceName, properties.vendorID,
+                       static_cast<int>(properties.deviceType));
+}
+
 } // Anonymous namespace
 
 Device CreateDevice(const vk::Instance& instance, const vk::InstanceDispatch& dld, VkSurfaceKHR surface) {
     const std::vector<VkPhysicalDevice> devices = instance.EnumeratePhysicalDevices();
-    const u32 device_index = Settings::values.vulkan_device.GetValue();
-    if (device_index >= u32(devices.size())) {
-        LOG_ERROR(Render_Vulkan, "Invalid device index {}!", device_index);
+    if (devices.empty()) {
+        LOG_ERROR(Render_Vulkan, "No Vulkan physical devices were reported");
         throw vk::Exception(VK_ERROR_INITIALIZATION_FAILED);
     }
+
+    LOG_INFO(Render_Vulkan, "Vulkan devices ({}):", devices.size());
+    for (u32 index = 0; index < static_cast<u32>(devices.size()); ++index) {
+        const vk::PhysicalDevice device{devices[index], dld};
+        LOG_INFO(Render_Vulkan, "  GPU[{}]: {} | present {}", index, DescribeDevice(device),
+                 CanPresent(device, surface) ? "yes" : "no");
+    }
+
+    u32 device_index = Settings::values.vulkan_device.GetValue();
+    if (device_index >= u32(devices.size())) {
+        LOG_ERROR(Render_Vulkan,
+                  "Configured GPU index {} is out of range ({} device(s)); using GPU[0]",
+                  device_index, devices.size());
+        device_index = 0;
+    }
+
+    const vk::PhysicalDevice preferred_device{devices[device_index], dld};
+    if (!CanPresent(preferred_device, surface)) {
+        u32 fallback_index = static_cast<u32>(devices.size());
+        for (u32 index = 0; index < static_cast<u32>(devices.size()); ++index) {
+            if (index != device_index &&
+                CanPresent(vk::PhysicalDevice{devices[index], dld}, surface)) {
+                fallback_index = index;
+                break;
+            }
+        }
+        if (fallback_index == u32(devices.size())) {
+            LOG_ERROR(Render_Vulkan, "No Vulkan device can present on this window system; "
+                                     "check the GPU/driver and window system combination");
+            throw vk::Exception(VK_ERROR_FEATURE_NOT_PRESENT);
+        }
+        LOG_WARNING(Render_Vulkan,
+                    "GPU[{}] {} cannot present on this window system; falling back to GPU[{}] {}",
+                    device_index, DescribeDevice(preferred_device), fallback_index,
+                    DescribeDevice(vk::PhysicalDevice{devices[fallback_index], dld}));
+        device_index = fallback_index;
+    }
+
     const vk::PhysicalDevice physical_device(devices[device_index], dld);
     return Device(*instance, physical_device, surface, dld);
 }
