@@ -24,6 +24,20 @@ dist/english_plurals/generated_en.ts
 # Eden-Wayland generated reports
 /docs/wayland/reports/
 
+# Local AI context and policy (not shared)
+/docs/policies/AI.md
+/docs/wayland/AI_CONTEXT.md
+
+# Local AI tool state
+/.opencode/
+/.claude/settings.local.json
+/.cursor/cache/
+/.codex/
+/.continue/
+/.aider*
+CLAUDE.local.md
+GEMINI.local.md
+
 # Project/editor files
 *.swp
 .idea/
