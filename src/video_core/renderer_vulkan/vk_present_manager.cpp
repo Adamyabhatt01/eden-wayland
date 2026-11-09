@@ -4,6 +4,9 @@
 // SPDX-FileCopyrightText: Copyright 2023 yuzu Emulator Project
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include <algorithm>
+#include <utility>
+
 #include "common/settings.h"
 #include "common/thread.h"
 #include "core/frontend/emu_window.h"
@@ -24,6 +27,7 @@ namespace {
 
 constexpr size_t MAX_FRAMES_IN_FLIGHT = 7;
 constexpr u32 MAX_PRESENT_ATTEMPTS = 3;
+constexpr u32 MAX_SWAPCHAIN_RECREATE_ATTEMPTS = 3;
 #ifdef HAS_LSFG
 static_assert(MAX_FRAMES_IN_FLIGHT <= LSFG_MAX_TARGETS);
 #endif
@@ -182,6 +186,7 @@ Frame* PresentManager::GetRenderFrame() {
     // Wait for the presentation to be finished so all frame resources are free
     frame->present_done.Wait();
     frame->present_done.Reset();
+    frame->render_ready_consumed = false;
 
     return frame;
 }
@@ -355,29 +360,39 @@ void PresentManager::PresentThread(std::stop_token token) {
     }
 }
 
-void PresentManager::RecreateSwapchain(Frame* frame) {
-    swapchain.Create(*surface, frame->width, frame->height); // Pass raw pointer
+bool PresentManager::RecreateSwapchain(Frame* frame) {
+    if (!swapchain.Create(*surface, frame->width, frame->height)) {
+        return false;
+    }
     SetImageCount();
+    return true;
 }
 
 void PresentManager::SetImageCount() {
     // We cannot have more than 7 images in flight at any given time.
     // FRAMES_IN_FLIGHT is 8, and the cache TICKS_TO_DESTROY is 8.
     // Mali drivers will give us 6.
+    const size_t swapchain_images = swapchain.GetImageCount();
 #ifdef HAS_LSFG
     const size_t generations = Settings::FrameGenMaxGenerations();
     const size_t queued_composites = Settings::values.frame_gen_queue_target.GetValue() + 1;
-    image_count =
-        std::clamp<size_t>((generations + 1) * queued_composites, swapchain.GetImageCount(),
-                           MAX_FRAMES_IN_FLIGHT);
+    image_count = std::max<size_t>(
+        1, std::clamp<size_t>((generations + 1) * queued_composites, swapchain_images,
+                              MAX_FRAMES_IN_FLIGHT));
 #else
-    image_count = std::min<size_t>(swapchain.GetImageCount(), MAX_FRAMES_IN_FLIGHT);
+    image_count = std::max<size_t>(1, std::min<size_t>(swapchain_images, MAX_FRAMES_IN_FLIGHT));
 #endif
-    swapchain_image_count = swapchain.GetImageCount();
+    swapchain_image_count = swapchain_images;
     swapchain_image_format = swapchain.GetImageFormat();
 }
 
 void PresentManager::DiscardFrame(Frame* frame) {
+    // The copy submission already waits on render_ready and signals present_done.
+    // Waiting on the semaphore again would deadlock it.
+    if (frame->render_ready_consumed) {
+        return;
+    }
+
     static constexpr VkPipelineStageFlags wait_stage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
     const VkSemaphore render_ready = *frame->render_ready;
     const VkSubmitInfo submit_info{
@@ -393,49 +408,111 @@ void PresentManager::DiscardFrame(Frame* frame) {
     };
 
     std::scoped_lock submit_lock{scheduler.submit_mutex};
-    void(device.GetGraphicsQueue().Submit(submit_info, *frame->present_done));
+    switch (const VkResult result =
+                device.GetGraphicsQueue().Submit(submit_info, *frame->present_done)) {
+    case VK_SUCCESS:
+        frame->render_ready_consumed = true;
+        break;
+    case VK_ERROR_DEVICE_LOST:
+        device.ReportLoss();
+        [[fallthrough]];
+    default:
+        vk::Check(result);
+        break;
+    }
+}
+
+bool PresentManager::RecreateSurface() {
+    const auto& window_info = render_window.GetWindowInfo();
+    if (window_info.render_surface == nullptr) {
+        LOG_ERROR(Render_Vulkan,
+                  "Cannot recreate the presentation surface: window has no render surface");
+        return false;
+    }
+
+    vk::SurfaceKHR new_surface;
+    try {
+        new_surface = CreateSurface(instance, window_info);
+    } catch (const vk::Exception& except) {
+        LOG_ERROR(Render_Vulkan, "Failed to recreate the presentation surface: {}", except.what());
+        return false;
+    }
+
+    // Destroy the swapchain before its surface: vkDestroySurfaceKHR requires all
+    // swapchains created for the surface to be gone first.
+    swapchain.Reset();
+    surface = std::move(new_surface);
+    LOG_INFO(Render_Vulkan, "Recreated presentation surface after surface loss");
+    return true;
 }
 
 void PresentManager::CopyToSwapchain(Frame* frame) {
-    bool requires_recreation = false;
+    bool recreate_surface = false;
 
     for (u32 attempt = 0; attempt < MAX_PRESENT_ATTEMPTS; ++attempt) {
         try {
-            // Recreate surface and swapchain if needed.
-            if (requires_recreation) {
-#ifdef __ANDROID__
-                surface = CreateSurface(instance, render_window.GetWindowInfo());
-#endif
-                RecreateSwapchain(frame);
+            if (recreate_surface) {
+                if (!RecreateSurface()) {
+                    break;
+                }
+                recreate_surface = false;
             }
 
-            // Draw to swapchain.
-            return CopyToSwapchainImpl(frame);
+            if (CopyToSwapchainImpl(frame)) {
+                return;
+            }
+            break;
         } catch (const vk::Exception& except) {
             if (except.GetResult() != VK_ERROR_SURFACE_LOST_KHR) {
                 throw;
             }
 
-            requires_recreation = true;
+            if (frame->render_ready_consumed) {
+                // The frame was already submitted. Retire it and recover on the
+                // next frame instead of waiting on a consumed semaphore.
+                break;
+            }
+            recreate_surface = true;
         }
     }
 
     DiscardFrame(frame);
 }
 
-void PresentManager::CopyToSwapchainImpl(Frame* frame) {
+bool PresentManager::CopyToSwapchainImpl(Frame* frame) {
+    // A zero-extent surface (minimised, output removed) must not be acquired
+    // from or presented to. Keep the previous swapchain and skip this frame.
+    if (!swapchain.IsDrawable() && !RecreateSwapchain(frame)) {
+        return false;
+    }
 
     // If the size of the incoming frames has changed, recreate the swapchain
     // to account for that.
-    const bool is_suboptimal = swapchain.NeedsRecreation();
+    const bool needs_recreation = swapchain.NeedsRecreation();
     const bool size_changed =
         swapchain.GetWidth() != frame->width || swapchain.GetHeight() != frame->height;
-    if (is_suboptimal || size_changed) {
-        RecreateSwapchain(frame);
+    if (needs_recreation || size_changed) {
+        if (!RecreateSwapchain(frame)) {
+            return false;
+        }
     }
 
-    while (swapchain.AcquireNextImage()) {
-        RecreateSwapchain(frame);
+    bool acquired = false;
+    for (u32 attempt = 0; attempt < MAX_SWAPCHAIN_RECREATE_ATTEMPTS; ++attempt) {
+        if (swapchain.AcquireNextImage()) {
+            acquired = true;
+            break;
+        }
+        if (!swapchain.IsOutDated()) {
+            break;
+        }
+        if (!RecreateSwapchain(frame)) {
+            break;
+        }
+    }
+    if (!acquired) {
+        LOG_DEBUG(Render_Vulkan, "Skipping presentation: no swapchain image available");
+        return false;
     }
 
     const vk::CommandBuffer cmdbuf{frame->cmdbuf};
@@ -571,6 +648,7 @@ void PresentManager::CopyToSwapchainImpl(Frame* frame) {
         switch (const VkResult result =
                     device.GetGraphicsQueue().Submit(submit_info, *frame->present_done)) {
         case VK_SUCCESS:
+            frame->render_ready_consumed = true;
             break;
         case VK_ERROR_DEVICE_LOST:
             device.ReportLoss();
@@ -583,6 +661,7 @@ void PresentManager::CopyToSwapchainImpl(Frame* frame) {
 
     // Present
     swapchain.Present(render_semaphore);
+    return true;
 }
 
 } // namespace Vulkan

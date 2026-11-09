@@ -38,6 +38,7 @@ struct Frame {
     vk::Semaphore render_ready;
     vk::Fence present_done;
     bool storage_capable{};
+    bool render_ready_consumed{};
 };
 
 class PresentManager {
@@ -77,9 +78,16 @@ private:
 
     void CopyToSwapchain(Frame* frame);
 
-    void CopyToSwapchainImpl(Frame* frame);
+    /// Returns true when a frame was presented, false when it must be discarded.
+    bool CopyToSwapchainImpl(Frame* frame);
 
-    void RecreateSwapchain(Frame* frame);
+    /// Recreates the swapchain for the frame size. Returns false when the surface
+    /// is not drawable and the previous swapchain was kept.
+    bool RecreateSwapchain(Frame* frame);
+
+    /// Recreates the presentation surface. The old swapchain is destroyed before
+    /// the old surface, as required by the Vulkan specification.
+    bool RecreateSurface();
 
     void DiscardFrame(Frame* frame);
 

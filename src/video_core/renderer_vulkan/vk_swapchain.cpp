@@ -133,34 +133,70 @@ Swapchain::Swapchain(
 
 Swapchain::~Swapchain() = default;
 
-void Swapchain::Create(
+bool Swapchain::Create(
     VkSurfaceKHR_T* surface_,
     u32 width_,
     u32 height_)
 {
     is_outdated = false;
     is_suboptimal = false;
-    width = width_;
-    height = height_;
     surface = surface_;
+
+    if (!swapchain) {
+        // No swapchain exists yet. Use a format that frame resources can be
+        // created with while the surface is not drawable.
+#ifdef __ANDROID__
+        image_view_format = VK_FORMAT_R8G8B8A8_UNORM;
+#else
+        image_view_format = VK_FORMAT_B8G8R8A8_UNORM;
+#endif
+        surface_format.format = image_view_format;
+        surface_format.colorSpace = VK_COLOR_SPACE_SRGB_NONLINEAR_KHR;
+    }
 
     const auto physical_device = device.GetPhysical();
     const auto capabilities{physical_device.GetSurfaceCapabilitiesKHR(VkSurfaceKHR(surface))};
-    if (capabilities.maxImageExtent.width == 0 || capabilities.maxImageExtent.height == 0) {
-        LOG_DEBUG(Render_Vulkan, "Skipping swapchain creation: surface reports empty extent");
-        return;
+    constexpr auto undefined_size{(std::numeric_limits<u32>::max)()};
+    const bool current_extent_is_zero =
+        capabilities.currentExtent.width != undefined_size &&
+        (capabilities.currentExtent.width == 0 || capabilities.currentExtent.height == 0);
+    if (current_extent_is_zero || capabilities.maxImageExtent.width == 0 ||
+        capabilities.maxImageExtent.height == 0) {
+        LOG_DEBUG(Render_Vulkan,
+                  "Surface is not drawable (current {}x{}, max {}x{}); deferring swapchain creation",
+                  capabilities.currentExtent.width, capabilities.currentExtent.height,
+                  capabilities.maxImageExtent.width, capabilities.maxImageExtent.height);
+        drawable = false;
+        // Keep the previous swapchain and its size metadata so it can be replaced
+        // once the surface reports a valid extent again.
+        return false;
     }
 
-    Destroy();
+    // Keep the old swapchain alive until the replacement is created. Passing it
+    // as oldSwapchain avoids presenting an undefined image during the transition.
+    frame_index = 0;
+    image_index = 0;
+    width = width_;
+    height = height_;
 
     CreateSwapchain(capabilities);
     CreateSemaphores();
+    drawable = true;
 
     resource_ticks.clear();
     resource_ticks.resize(image_count);
+    return true;
+}
+
+void Swapchain::Reset() {
+    Destroy();
 }
 
 bool Swapchain::AcquireNextImage() {
+    if (!drawable) {
+        return false;
+    }
+
     const VkResult result = device.GetLogical().AcquireNextImageKHR(
         *swapchain, (std::numeric_limits<u64>::max)(), *present_semaphores[frame_index],
         VK_NULL_HANDLE, &image_index);
@@ -172,13 +208,13 @@ bool Swapchain::AcquireNextImage() {
         break;
     case VK_ERROR_OUT_OF_DATE_KHR:
         is_outdated = true;
-        break;
+        return false;
     case VK_ERROR_SURFACE_LOST_KHR:
         vk::Check(result);
-        break;
+        return false;
     default:
         LOG_ERROR(Render_Vulkan, "vkAcquireNextImageKHR returned {}", string_VkResult(result));
-        break;
+        return false;
     }
 
     const auto wait_with_frame_pacing = [this] {
@@ -213,7 +249,7 @@ bool Swapchain::AcquireNextImage() {
 
     resource_ticks[image_index] = scheduler.CurrentTick();
 
-    return is_suboptimal || is_outdated;
+    return true;
 }
 
 void Swapchain::Present(VkSemaphore render_semaphore) {
@@ -302,7 +338,7 @@ void Swapchain::CreateSwapchain(const VkSurfaceCapabilitiesKHR& capabilities) {
         .compositeAlpha = alpha_flags,
         .presentMode = present_mode,
         .clipped = VK_FALSE,
-        .oldSwapchain = VkSwapchainKHR{},
+        .oldSwapchain = *swapchain,
     };
     const u32 graphics_family{device.GetGraphicsFamily()};
     const u32 present_family{device.GetPresentFamily()};
@@ -379,7 +415,12 @@ void Swapchain::CreateSemaphores() {
 }
 
 void Swapchain::Destroy() {
+    drawable = false;
     frame_index = 0;
+    image_index = 0;
+    image_count = 0;
+    images.clear();
+    resource_ticks.clear();
     present_semaphores.clear();
     render_semaphores.clear();
     swapchain.reset();

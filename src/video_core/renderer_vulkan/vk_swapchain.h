@@ -31,20 +31,30 @@ public:
     ~Swapchain();
 
     /// Creates (or recreates) the swapchain with a given size.
-    void Create(
+    /// Returns false when the surface is not drawable; the previous swapchain is kept.
+    bool Create(
         VkSurfaceKHR_T* surface,
         u32 width,
         u32 height);
 
+    /// Destroys the swapchain and its semaphores without creating a replacement.
+    void Reset();
+
     /// Acquires the next image in the swapchain, waits as needed.
+    /// Returns true when an image was acquired and is safe to render to.
     bool AcquireNextImage();
 
     /// Presents the rendered image to the swapchain.
     void Present(VkSemaphore render_semaphore);
 
+    /// Returns true when the surface is drawable and a swapchain is available.
+    bool IsDrawable() const {
+        return drawable;
+    }
+
     /// Returns true when the swapchain needs to be recreated.
     bool NeedsRecreation() const {
-        return IsSubOptimal() || NeedsPresentModeUpdate();
+        return IsOutDated() || IsSubOptimal() || NeedsPresentModeUpdate();
     }
 
     /// Returns true when the swapchain is outdated.
@@ -131,8 +141,8 @@ private:
     std::vector<vk::Semaphore> present_semaphores;
     std::vector<vk::Semaphore> render_semaphores;
 
-    u32 width;
-    u32 height;
+    u32 width{};
+    u32 height{};
 
     u32 image_index{};
     u32 frame_index{};
@@ -145,6 +155,7 @@ private:
     bool has_mailbox{false};
     bool has_fifo_relaxed{false};
 
+    bool drawable{};
     bool is_outdated{};
     bool is_suboptimal{};
 };
