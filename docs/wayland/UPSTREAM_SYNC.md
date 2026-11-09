@@ -9,7 +9,7 @@
 | Last synchronized upstream commit | `943f1fc76087adcfc893fb1ca3aea507df15d004` (2026-10-30) |
 | Fork base commit | same as last synchronized commit |
 | Integration branch | `linux-wayland` |
-| Custom commits | 18 at the start of the 2026-11-09 docs pass; source patches A1/A2/B1/C1 (see `git log` and `PATCHES.md`) |
+| Custom commits | 20 at the start of the 2026-11-09 docs pass; source patches A1/A2/B1/C1/D1/D2 (see `git log` and `PATCHES.md`) |
 | Imported upstream performance work | none yet |
 | Pending upstream changes | none recorded; run the audit script |
 | Open conflicts | none |

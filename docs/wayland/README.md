@@ -17,7 +17,7 @@ reproducibly.
 | 1 — Architecture audit | Complete (`ARCHITECTURE.md`) |
 | 2 — Implementation plan | Complete (`WAYLAND_IMPLEMENTATION_PLAN.md`) |
 | 3 — Baseline + native Wayland prototype | Complete: native Wayland Vulkan presentation verified on NVIDIA and Intel, plus XWayland; see `TESTING.md` and `evidence/` |
-| 4 — Reliability | In progress: C1 landed; C2, D1, D2, E1 and F1/F2 pending |
+| 4 — Reliability | In progress: C1, D1 and D2 landed (D1/D2 recovery paths code-verified, runtime surface-loss/minimise not yet observed); C2, E1 and F1/F2 pending |
 | 5 — Optimization | Not started |
 | 6 — Packaging | Not started |
 | 7 — Final audit | Not started |
