@@ -49,11 +49,23 @@ implemented until it is committed and tested.
 
 ## Interaction with upstream
 
-- Prefer changes that upstream would accept (small, platform-neutral where
-  possible).
-- If upstream later implements the same behaviour, remove the fork patch and
-  record it here.
-- Never modify `upstream/master`.
+**Portability rule (hard constraint for every fork patch):** this fork must
+stay easy to keep in sync with upstream. Every patch must satisfy all of the
+following:
+
+1. Keep the diff small and localized to the subsystem it touches.
+2. Do not rename/move upstream code or restructure upstream files; prefer a
+   small helper or a guarded branch (platform- or feature-guarded) over
+   rewriting upstream logic.
+3. Do not change behaviour on platforms/paths other than the one the patch
+   targets (e.g. a Wayland fix must not alter Windows/Android/X11 behaviour),
+   so an upstream port of the same area keeps working.
+4. Put fork-only files under `docs/wayland/`, `tools/wayland/`,
+   `tools/upstream-sync/`, and `packaging/` where possible.
+5. Record every patch in this inventory with the upstream base commit it was
+   written against, so a later import can be reapplied or dropped cleanly.
+
+If a patch would violate any of these, stop and discuss it before writing code.
 
 ## Dropped / superseded patches
 
