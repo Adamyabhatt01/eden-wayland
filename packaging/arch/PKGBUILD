@@ -1,15 +1,14 @@
 # Maintainer: Eden-Wayland fork maintainers
 # SPDX-License-Identifier: GPL-3.0-or-later
-# Builds the native-Wayland fork (branch linux-wayland) from a source tree.
-# The fork currently has no public origin remote, so the source points at a
-# local clone of this tree. Once Eden-Wayland has a published origin, replace
-# _source with that git URL.
+# Builds the native-Wayland fork (branch linux-wayland) from my fork's
+# public GitHub remote. qt6-wayland provides the native Wayland platform
+# plugin; use QT_QPA_PLATFORM=xcb for the XWayland fallback.
 pkgname=eden-wayland
 pkgver=0.2.1.r2.g6bd74216
 pkgrel=1
 pkgdesc="Multiplatform FOSS Switch 1 emulator (native Wayland fork)"
 arch=('x86_64')
-url="https://git.eden-emu.dev/eden-emu/eden"
+url="https://github.com/Adamyabhatt01/eden-wayland"
 license=('GPL-3.0-or-later')
 depends=(
     'qt6-base'
@@ -45,7 +44,7 @@ optdepends=(
 # Runtime Qt platform is Wayland-first in this fork; override with
 # QT_QPA_PLATFORM=xcb for the XWayland fallback. Software deps are resolved
 # by CMake/CPM at configure time (see CMakeLists.txt).
-_source="eden-wayland::git+file:///home/adamya/projects/eden-wayland#$branch=linux-wayland"
+_source="eden-wayland::git+https://github.com/Adamyabhatt01/eden-wayland.git#$branch=linux-wayland"
 source=($_source)
 sha256sums=('SKIP')
 
