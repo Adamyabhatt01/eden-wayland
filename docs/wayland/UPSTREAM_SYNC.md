@@ -6,15 +6,15 @@
 |---|---|
 | Upstream | `https://git.eden-emu.dev/eden-emu/eden.git` (remote `upstream`) |
 | Tracking branch | `upstream/master` (never modified locally) |
-| Last synchronized upstream commit | `943f1fc76087adcfc893fb1ca3aea507df15d004` (2026-10-30) |
+| Last synchronized upstream commit | `ae60f8e7f85915a2b79d98b49e3134bbdbeca471` (2026-11-08); merged into `linux-wayland` on 2026-11-09 and staged (merge commit left to the user per `AGENTS.md`) |
 | Fork base commit | same as last synchronized commit |
 | Integration branch | `linux-wayland` |
-| Custom commits | 20 at the start of the 2026-11-09 docs pass; source patches A1/A2/B1/C1/D1/D2 (see `git log` and `PATCHES.md`) |
-| Imported upstream performance work | none yet |
+| Custom commits | 22 (incl. the portability rule); source patches A1/A2/B1/C1/D1/D2/C2/E1/F1 plus the hybrid Wayland-first default (see `git log` and `PATCHES.md`) |
+| Imported upstream work of note | `9c3bdeffc0` Wayland policy (deleted the "Wayland Detected!" dialog and the `gui_force_x11` mechanism; XWayland-first default, replaced by the fork's Wayland-first hybrid); `8d29148afe` min Qt 6.6 (packaging input for J1); controller/gamemode/gamescope fixes (relevant to T11–T18); `bfa72a22a3` NCE fault GPU writes; `3d3ed4b7d1` renderer_vulkan sprite fix; jacinth/hydrocarbon + bundled lz4 build changes (all imported via the merge; see the audit report) |
 | Pending upstream changes | none recorded; run the audit script |
-| Open conflicts | none |
+| Open conflicts | none (merge conflicts in `main.cpp`/`main_window.cpp` resolved by adopting upstream deletions, per the portability rule) |
 | Known regressions | none known; C1 changed GPU selection (see `TESTING.md`) |
-| Latest upstream release | `v0.2.1` (2026-06-01); `master` is 411 commits ahead |
+| Latest upstream release | `v0.2.1` (2026-06-01) |
 
 The sync state file is `.git/eden-wayland-upstream-sync` and is intentionally
 not committed. The authoritative record for reviewers is this document; update

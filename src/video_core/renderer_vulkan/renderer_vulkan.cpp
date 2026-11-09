@@ -254,6 +254,8 @@ try
     , frame_gen(memory_allocator, scheduler)
 #endif
 {
+    // The overlay panels go on the screen only: not in screenshots or the applets' capture
+    blit_swapchain.DrawOverlayPanels(true);
 
     if (Settings::values.renderer_force_max_clock.GetValue() && device.ShouldBoostClocks()) {
         turbo_mode.emplace(instance, dld);
@@ -266,8 +268,16 @@ try
 
     Report();
 } catch (const vk::Exception& exception) {
-    LOG_ERROR(Render_Vulkan, "Vulkan initialization failed with error: {}", exception.what());
-    throw std::runtime_error{fmt::format("Vulkan initialization error {}", exception.what())};
+    const auto window_system = WindowSystemName(render_window.GetWindowInfo().type);
+    LOG_ERROR(Render_Vulkan, "Vulkan initialization failed on window system {} with error: {}",
+              window_system, exception.what());
+#ifdef __linux__
+    LOG_ERROR(Render_Vulkan,
+              "Hint: choose a present-capable GPU in Settings, or launch via prime-run or "
+              "QT_QPA_PLATFORM=wayland/xcb so the compositor surface can be presented");
+#endif
+    throw std::runtime_error{fmt::format("Vulkan initialization error {} (window system: {})",
+                                         exception.what(), window_system)};
 }
 
 RendererVulkan::~RendererVulkan() {

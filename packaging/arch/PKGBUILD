@@ -1,0 +1,71 @@
+# Maintainer: Eden-Wayland fork maintainers
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Builds the native-Wayland fork (branch linux-wayland) from a source tree.
+# The fork currently has no public origin remote, so the source points at a
+# local clone of this tree. Once Eden-Wayland has a published origin, replace
+# _source with that git URL.
+pkgname=eden-wayland
+pkgver=0.2.1.r2.g6bd74216
+pkgrel=1
+pkgdesc="Multiplatform FOSS Switch 1 emulator (native Wayland fork)"
+arch=('x86_64')
+url="https://git.eden-emu.dev/eden-emu/eden"
+license=('GPL-3.0-or-later')
+depends=(
+    'qt6-base'
+    'qt6-wayland'   # native Wayland platform plugin (fork requirement)
+    'qt6-charts'    # Qt Charts component used by the Qt frontend
+    'qt6-multimedia'
+    'ffmpeg'
+    'vulkan-icd-loader'
+    'libsodium'
+    'libusb'
+    'sdl3'
+    'gamemode'
+    'libcups'
+    'cubeb'
+)
+makedepends=(
+    'cmake'
+    'ninja'
+    'git'
+    'pkgconf'
+    'brotli'
+    'zstd'
+    'boost'
+    'fmt'
+    'spdlog'
+    'nlohmann-json'
+    'lz4'
+)
+optdepends=(
+    'mangohud: FPS/frame-time overlay'
+    'lib32-vulkan-icd-loader: 32-bit Vulkan drivers'
+)
+# Runtime Qt platform is Wayland-first in this fork; override with
+# QT_QPA_PLATFORM=xcb for the XWayland fallback. Software deps are resolved
+# by CMake/CPM at configure time (see CMakeLists.txt).
+_source="eden-wayland::git+file:///home/adamya/projects/eden-wayland#$branch=linux-wayland"
+source=($_source)
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$pkgname"
+    printf "%s.r%s.g%s" "0.2.1" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$srcdir/$pkgname"
+    cmake -S . -B build -G Ninja \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DENABLE_QT=ON \
+        -DENABLE_DEBUG_TOOLS=ON \
+        -DYUZU_USE_EXTERNAL_FFMPEG=ON \
+        -DYUZU_USE_EXTERNAL_QT=ON
+    cmake --build build -j"$(nproc)"
+}
+
+package() {
+    cd "$srcdir/$pkgname/build"
+    DESTDIR="$pkgdir" cmake --install .
+}

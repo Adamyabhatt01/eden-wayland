@@ -6,6 +6,7 @@
 #include <cmath>
 #include <cstring>
 #include <string>
+#include "hid_core/hid_core.h"
 
 #ifdef HAS_OPENGL
 #include <glad/glad.h>
@@ -131,7 +132,8 @@ GRenderWindow::GRenderWindow(MainWindow* parent,
     strict_context_required = QGuiApplication::platformName() == QStringLiteral("wayland") ||
                               QGuiApplication::platformName() == QStringLiteral("wayland-egl");
 
-    connect(this, &GRenderWindow::FirstFrameDisplayed, parent, &MainWindow::OnLoadComplete);
+    connect(this, &GRenderWindow::FirstFrameDisplayed, parent, &MainWindow::OnLoadComplete,
+            Qt::QueuedConnection);
     connect(this, &GRenderWindow::ExecuteProgramSignal, parent, &MainWindow::OnExecuteProgram,
             Qt::QueuedConnection);
     connect(this, &GRenderWindow::ExitSignal, parent, &MainWindow::OnExit, Qt::QueuedConnection);
@@ -154,6 +156,9 @@ void GRenderWindow::Exit() {
 }
 
 GRenderWindow::~GRenderWindow() {
+    if (QtCommon::system)
+        QtCommon::system->HIDCore().UnloadInputDevices();
+
     input_subsystem->Shutdown();
 }
 
@@ -178,17 +183,14 @@ bool GRenderWindow::IsShown() const {
     return !isMinimized();
 }
 
-// On Qt 5.0+, this correctly gets the size of the framebuffer (pixels).
-//
-// Older versions get the window size (density independent pixels),
-// and hence, do not support DPI scaling ("retina" displays).
-// The result will be a viewport that is smaller than the extent of the window.
 void GRenderWindow::OnFramebufferSizeChanged() {
     // Screen changes potentially incur a change in screen DPI, hence we should update the
     // framebuffer size
     const qreal pixel_ratio = windowPixelRatio();
-    const u32 width = this->width() * pixel_ratio;
-    const u32 height = this->height() * pixel_ratio;
+    // Round (do not truncate): a fractional scale such as 1.5 must keep the extra pixel
+    // instead of cutting it off.
+    const u32 width = static_cast<u32>(std::round(this->width() * pixel_ratio));
+    const u32 height = static_cast<u32>(std::round(this->height() * pixel_ratio));
     UpdateCurrentFramebufferLayout(width, height);
 }
 
@@ -693,7 +695,9 @@ void GRenderWindow::OnCameraCapture(int requestId, const QImage& img) {
 }
 
 bool GRenderWindow::event(QEvent* event) {
-    if (event->type() == QEvent::TouchBegin) {
+    if (event->type() == QEvent::WinIdChange) {
+        ConnectWindowSignals(windowHandle());
+    } else if (event->type() == QEvent::TouchBegin) {
         TouchBeginEvent(static_cast<QTouchEvent*>(event));
         return true;
     } else if (event->type() == QEvent::TouchUpdate) {
@@ -937,9 +941,32 @@ QStringList GRenderWindow::GetUnsupportedGLExtensions() const {
 void GRenderWindow::showEvent(QShowEvent* event) {
     QWidget::showEvent(event);
 
-    // windowHandle() is not initialized until the Window is shown, so we connect it here.
-    connect(windowHandle(), &QWindow::screenChanged, this, &GRenderWindow::OnFramebufferSizeChanged,
-            Qt::UniqueConnection);
+    // windowHandle() may still be nullptr during the initial show; QEvent::WinIdChange
+    // in event() covers the late-handle case.
+    ConnectWindowSignals(windowHandle());
+}
+
+void GRenderWindow::ConnectWindowSignals(QWindow* handle) {
+    if (handle == nullptr) {
+        return;
+    }
+    connect(handle, &QWindow::screenChanged, this,
+            [this](QScreen* screen) {
+                ConnectDpiSignal(screen);
+                OnFramebufferSizeChanged();
+            }, Qt::UniqueConnection);
+    if (QScreen* screen = handle->screen()) {
+        ConnectDpiSignal(screen);
+    }
+}
+
+void GRenderWindow::ConnectDpiSignal(QScreen* screen) {
+    if (screen != nullptr) {
+        // A pure DPR change (e.g. fractional-scale change) does not resize the window;
+        // watch the screen's DPI so the framebuffer follows without a resize.
+        connect(screen, &QScreen::logicalDotsPerInchChanged, this,
+                &GRenderWindow::OnFramebufferSizeChanged, Qt::UniqueConnection);
+    }
 }
 
 bool GRenderWindow::eventFilter(QObject* object, QEvent* event) {

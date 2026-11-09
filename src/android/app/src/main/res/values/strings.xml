@@ -498,7 +498,7 @@
     <string name="user_data_import_failed_description">Make sure the user data folders are at the root of the zip folder and contain a config file at config/config.ini and try again.</string>
     <string name="discord_link" translatable="false">https://discord.gg/HstXbPch7X</string>
     <string name="stoat_link" translatable="false">https://stt.gg/qKgFEAbH</string>
-    <string name="x_link" translatable="false">https://nitter.poast.org/edenemuofficial</string>
+    <string name="x_link" translatable="false">https://x.com/edenemuofficial</string>
     <string name="website_link" translatable="false">https://eden-emu.dev</string>
     <string name="github_link" translatable="false">https://git.eden-emu.dev/eden-emu</string>
 
@@ -1424,7 +1424,7 @@ OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
     </string>
     <string name="license_dynarmic" translatable="false">Dynarmic</string>
     <string name="license_dynarmic_description" translatable="false">An ARM dynamic recompiler</string>
-    <string name="license_dynarmic_link" translatable="false">https://github.com/merryhime/dynarmic</string>
+    <string name="license_dynarmic_link" translatable="false">https://git.eden-emu.dev/eden-emu/dynarmic</string>
     <string name="license_dynarmic_copyright" translatable="false">Copyright © 2017 merryhime</string>
     <string name="license_dynarmic_text" translatable="false">
 Permission to use, copy, modify, and/or distribute this software for

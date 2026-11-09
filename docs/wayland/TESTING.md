@@ -160,6 +160,32 @@ feature.
 | T22 | Save data isolation | Portable `user/` used; existing data untouched | Pass (portable profile; existing install not touched) |
 | T23 | Upstream regression after sync | Matrix passes vs previous known-good | Not run |
 
+### Pending runtime checks — agreed procedures
+
+These are the exact steps for the checks still open; record results in §8
+only after observing them.
+
+- **T10 (F1/F11 toggle-off):** toggle fullscreen via Eden's
+  View → Fullscreen menu (`action_Fullscreen`), not a synthetic F11 —
+  the default F11 hotkey is a `Qt::WindowShortcut` on `MainWindow`
+  (`qt_common/config/uisettings.cpp`) and does not fire while the render
+  window holds focus. Expected: swapchain recreation lines
+  `1920x1017` ↔ `1280x720` in `eden_log.txt` on each toggle, no stuck
+  fullscreen, frameless flag restored on exit.
+- **T09/T11 (unmap + focus loss):** `hyprctl dispatch minimize` mid-game.
+  Moving the window to another workspace does NOT unmap the surface, so
+  it cannot exercise the not-drawable path. On minimise expect
+  `Surface is not drawable` (`vk_swapchain.cpp`) and no hang; on restore
+  expect `Recreated presentation surface after surface loss`
+  (`vk_present_manager.cpp`) and a valid swapchain. Same run covers the
+  T11 remainder (input released on focus loss, loop continues).
+- **T13/E1 (fractional scale):** `hyprctl keyword monitor eDP-1,1920x1080@120,0x0,1.5`
+  then resize/reconfigure. Swapchain extents are physical pixels
+  (~logical × 1.5), so do not predict a literal size — assert the extent
+  equals `round(window_size × scale)` (the `std::round` path in
+  `GRenderWindow::OnFramebufferSizeChanged`), with no truncation and no
+  restart. Revert the monitor scale to `1.0` afterwards.
+
 ## 5. Validation layers
 
 Build/run with renderer debug enabled (`debug` renderer setting) so Eden adds
@@ -281,6 +307,9 @@ contains `908x975` and `1016x975`.
 | 2026-10-31 | Same build | T22: portable profile isolation | Pass | All logs/config/saves stayed under `build/wayland-run/user/`; `~/.config/eden` and `~/.local/share/eden` untouched; `renderer_debug` reverted to `false` after the validation run |
 | 2026-11-09 | Fork D1/D2 (`vk_swapchain`, `vk_present_manager`), RelWithDebInfo | T04/T08/D1+D2 smoke: native Wayland, hbmenu NRO, NVIDIA | Pass | `Qt platform: wayland`, `Created Wayland surface`, swapchain `1280x720`, then resize recreations `1808x955` → `1920x1017` → `1808x955` with presentation continuing; 0 `VUID-`/`Validation Error` lines; no hang or crash over 3 min. Not exercised: zero-extent/minimised surfaces and `VK_ERROR_SURFACE_LOST_KHR` recovery (Hyprland keeps valid extents; no surface loss occurred), so D1/D2 recovery paths remain code-verified only. Evidence: `docs/wayland/evidence/2026-11-09-d1d2-native-wayland-eden.log` |
 | 2026-11-09 | Same D1/D2 build, RelWithDebInfo | T04/T08/T10: native Wayland, user-installed legal game, NVIDIA | Pass | `Qt platform: wayland`, `Created Wayland surface`, swapchain `1280x720`; resize/fullscreen recreations `1920x1017` ↔ `908x975` with presentation continuing and a clean shutdown (config written on exit). 0 `VUID-`/`Validation Error` lines; only upstream debug asserts (`texture format=0` lookup, `SwkbdConfig revision`) and the usual missing-save-dir error. Not observed: zero-extent/minimise and surface-loss recovery (no minimise or surface loss occurred). Evidence: `docs/wayland/evidence/2026-11-09-d1d2-realgamesession-eden.log` |
+| 2026-11-09 | Post-merge build (37 upstream commits + fork Wayland-first hybrid) | T01/T02: default launch with clean environment; XWayland override | Pass | Default (no `QT_QPA_PLATFORM`): `Qt Platform Backend: wayland`, `Created Wayland surface`, swapchain `1280x720`, `xwayland=false`. `QT_QPA_PLATFORM=xcb`: `Qt Platform Backend: xcb`, `Created Xlib surface`, `xwayland=true`. 0 `VUID-`/`Validation Error` lines in both runs. Evidence: `...2026-11-09-merge-default-wayland-eden.log`, `...2026-11-09-merge-xwayland-eden.log` |
+| 2026-11-09 | Post-merge build | C2: forced Vulkan init failure (`VK_LOADER_DRIVERS_SELECT` with no devices) | Pass | Log shows `Vulkan initialization failed on window system Wayland with error: ...` + the prime-run/`QT_QPA_PLATFORM` hint + `Failed to initialize GPU: Vulkan initialization error ... (window system: Wayland)`. Evidence: `...2026-11-09-c2-enriched-error-eden.log` |
+| 2026-11-09 | Same build (portable profile) | T11-partial: user controller via Eden Configure Controllers | Pass (user-reported) | Dongle: `2563:0526 SHANWAN Android Gamepad` streams `js_event` bytes on `/dev/input/js0` (verified live); Eden's bundled SDL enumerates it (`joysticks: 1 ... SHANWAN Android Gamepad | /dev/input/event23`, `gamepads: 1`). User reports the pad is now recognised by Eden after connecting Player 1 in the UI. Caveat: profile snapshots still show `player_1_connected=false` with keyboard bindings, so the saving state in the killed session differs from the ini; not verified from a saved config |
 
 Rows identify the build under test. Official-binary rows prove the environment
 and Qt Wayland path only; fork rows with an hbmenu entry also prove the fork's

@@ -1,0 +1,253 @@
+[   0.000115] Frontend <Info> qt_common/qt_common.cpp:241:Init: Eden Version: Eden Development Build | linux-wayland-6bd742169f-linux-wayland
+[   0.000124] Frontend <Info> qt_common/qt_common.cpp:169:LogRuntimes: Qt Compile: 6.12.0 Runtime: 6.12.0
+[   0.000126] Frontend <Info> qt_common/qt_common.cpp:257:Init: Host CPU: 12th Gen Intel(R) Core(TM) i5-12500H | AVX2 | FMA
+[   0.000140] Frontend <Info> qt_common/qt_common.cpp:259:Init: Host CPU Cores: 8
+[   0.000140] Frontend <Info> qt_common/qt_common.cpp:262:Init: Host CPU Threads: 16
+[   0.000149] Frontend <Info> qt_common/qt_common.cpp:263:Init: Host OS: Arch Linux
+[   0.000156] Frontend <Info> qt_common/qt_common.cpp:264:Init: Host RAM: 15.30 GiB
+[   0.000157] Frontend <Info> qt_common/qt_common.cpp:266:Init: Host Swap: 8.00 GiB
+[   0.000165] Frontend <Info> qt_common/qt_common.cpp:281:Init: Qt Platform Backend: wayland
+[   0.000168] Frontend <Warning> qt_common/qt_common.cpp:283:Init: Platform backend is set to Wayland, which may cause performance/stability issues
+[   0.001359] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.004431] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.028600] Input <Info> input_common/drivers/udp_client.cpp:144:UDPClient: Udp Initialization started
+[   0.028636] Input <Info> input_common/drivers/udp_client.cpp:338:StartCommunication: Starting communication with UDP input server on 127.0.0.1:26760
+[   0.270726] Input <Info> input_common/drivers/joycon.cpp:25:Joycons: Joycon driver Initialization started
+[   0.299860] Frontend <Info> yuzu/main_window.cpp:10101:SetFirmwareVersion: Installed firmware: 20.5.0
+[   0.302316] Render.Vulkan <Error> video_core/vulkan_common/vulkan_instance.cpp:31:AreExtensionsSupported: Required instance extension VK_KHR_wayland_surface is not available
+[   0.302433] Frontend <Error> qt_common/util/vk.cpp:78:PopulateRecords: Failed to enumerate devices with error: VK_ERROR_EXTENSION_NOT_PRESENT
+[   0.318964] Frontend <Info> yuzu/main_window.cpp:7570:BootGame: Eden starting...
+[   0.319276] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.320923] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.322267] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/hbmenu.nro.ini
+[   0.322489] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/hbmenu.nro.ini
+[   0.323994] Config <Info> common/settings.cpp:135:LogSettings: Eden Configuration:
+[   0.323996] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_unit: 2208904143
+[   0.323996] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_battery: 1178839674
+[   0.323997] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_engine: auto
+[   0.323997] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_device: auto
+[   0.323997] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.input_device: auto
+[   0.323998] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.volume: 100
+[   0.323998] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.audio_muted: false
+[   0.323999] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.dump_audio_commands: false
+[   0.323999] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_multi_core: true
+[   0.323999] Config <Info> common/settings.cpp:137:LogSettings: -- Core.builtin_pad_manual: false
+[   0.324000] Config <Info> common/settings.cpp:137:LogSettings: -- Core.builtin_pad_identity: 
+[   0.324000] Config <Info> common/settings.cpp:137:LogSettings: -- Core.builtin_pad_blocked: 
+[   0.324000] Config <Info> common/settings.cpp:137:LogSettings: -- Core.builtin_pad_steam_handle: 
+[   0.324001] Config <Info> common/settings.cpp:137:LogSettings: -- Core.builtin_pad_steam_manual: false
+[   0.324001] Config <Info> common/settings.cpp:137:LogSettings: -- Core.memory_layout_mode: Memory_4Gb
+[   0.324002] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_speed_limit: true
+[   0.324002] Config <Info> common/settings.cpp:137:LogSettings: -- Core.speed_limit: 100
+[   0.324002] Config <Info> common/settings.cpp:137:LogSettings: -- Core.slow_speed_limit: 50
+[   0.324003] Config <Info> common/settings.cpp:137:LogSettings: -- Core.turbo_speed_limit: 200
+[   0.324003] Config <Info> common/settings.cpp:137:LogSettings: -- Core.current_speed_mode: Standard
+[   0.324003] Config <Info> common/settings.cpp:137:LogSettings: -- Core.sync_core_speed: false
+[   0.324004] Config <Info> common/settings.cpp:137:LogSettings: -- Core.enable_cheats_by_default: true
+[   0.324004] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_backend: Dynarmic
+[   0.324004] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_accuracy: Auto
+[   0.324005] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.use_custom_cpu_ticks: false
+[   0.324005] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_ticks: 16000
+[   0.324005] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_page_tables: true
+[   0.324006] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_block_linking: true
+[   0.324006] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_return_stack_buffer: true
+[   0.324006] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fast_dispatcher: true
+[   0.324007] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_context_elimination: true
+[   0.324007] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_const_prop: true
+[   0.324007] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_misc_ir: true
+[   0.324016] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_reduce_misalign_checks: true
+[   0.324017] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem: true
+[   0.324017] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem_exclusives: true
+[   0.324018] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_recompile_exclusives: true
+[   0.324018] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_ignore_memory_aborts: true
+[   0.324018] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_host_mmu: true
+[   0.324019] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_unfuse_fma: true
+[   0.324019] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_reduce_fp_error: true
+[   0.324019] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_standard_fpcr: true
+[   0.324020] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_inaccurate_nan: true
+[   0.324020] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_fastmem_check: true
+[   0.324020] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_global_monitor: true
+[   0.324021] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.backend: Vulkan
+[   0.324021] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vulkan_device: 0
+[   0.324022] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.resolution_setup: Res1X
+[   0.324022] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vsync: Fifo
+[   0.324022] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.scaling_filter: NearestNeighbor
+[   0.324023] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fsr_sharpening_slider: 25
+[   0.324023] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.aspect_ratio: R16_9
+[   0.324023] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.anti_aliasing: None
+[   0.324024] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_chain: 
+[   0.324024] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_preset: 
+[   0.324024] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_enabled: true
+[   0.324025] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen: false
+[   0.324025] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_multiplier: 2
+[   0.324025] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_target_rate: 0
+[   0.324026] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale_auto: true
+[   0.324026] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale: 75
+[   0.324027] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_queue_target: 0
+[   0.324027] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_dump_flow: false
+[   0.324027] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_gpu_emulation: true
+[   0.324028] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fullscreen_mode: Exclusive
+[   0.324028] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_red: 0
+[   0.324028] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_green: 0
+[   0.324029] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_blue: 0
+[   0.324029] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_accuracy: High
+[   0.324029] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dma_accuracy: Default
+[   0.324030] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_fence_behavior: Default
+[   0.324030] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vram_usage_mode: Conservative
+[   0.324030] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nvdec_emulation: Cpu
+[   0.324031] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.max_anisotropy: Automatic
+[   0.324037] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.accelerate_astc: Gpu
+[   0.324038] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_pacing_mode: Target_Auto
+[   0.324038] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.astc_recompression: Uncompressed
+[   0.324039] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sync_memory_operations: false
+[   0.324039] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.force_max_clock: false
+[   0.324039] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_disk_shader_cache: true
+[   0.324040] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vulkan_driver_pipeline_cache: true
+[   0.324040] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_compute_pipelines: false
+[   0.324041] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_video_framerate: false
+[   0.324041] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_reactive_flushing: true
+[   0.324041] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.barrier_feedback_loops: true
+[   0.324042] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_buffer_history: false
+[   0.324042] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.skip_cpu_inner_invalidation: false
+[   0.324042] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.async_presentation: false
+[   0.324043] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fix_bloom_effects: false
+[   0.324043] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.emulate_bgr565: false
+[   0.324043] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_shaders: false
+[   0.324044] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_texture_size: Large
+[   0.324044] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_stream_size: Medium
+[   0.324044] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_chunk_size: Medium
+[   0.324045] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_enabled: false
+[   0.324045] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dyna_state: EDS2
+[   0.324045] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sample_shading_fraction: 0
+[   0.324046] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vertex_input_dynamic_state: true
+[   0.324046] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.debug: false
+[   0.324047] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.shader_feedback: false
+[   0.324047] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nsight_aftermath: false
+[   0.324047] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_shader_loop_safety_checks: false
+[   0.324048] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.renderdoc_hotkey: false
+[   0.324048] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_buffer_reorder: false
+[   0.324048] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_cpu_time: Normal
+[   0.324049] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_gpu_time: Boost
+[   0.324049] Config <Info> common/settings.cpp:137:LogSettings: -- System.language_index: EnglishAmerican
+[   0.324050] Config <Info> common/settings.cpp:137:LogSettings: -- System.region_index: Usa
+[   0.324050] Config <Info> common/settings.cpp:137:LogSettings: -- System.time_zone_index: Auto
+[   0.324050] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_enabled: false
+[   0.324051] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc: 0
+[   0.324051] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_offset: 0
+[   0.324051] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed_enabled: false
+[   0.324054] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed: 0
+[   0.324055] Config <Info> common/settings.cpp:137:LogSettings: -- System.device_name: Eden
+[   0.324055] Config <Info> common/settings.cpp:137:LogSettings: -- System.current_user: 0
+[   0.324055] Config <Info> common/settings.cpp:137:LogSettings: -- System.use_docked_mode: Docked
+[   0.324056] Config <Info> common/settings.cpp:137:LogSettings: -- System.sound_index: Stereo
+[   0.324056] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.use_virtual_sd: true
+[   0.324056] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_inserted: false
+[   0.324057] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_current_game: false
+[   0.324057] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_path: 
+[   0.324058] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.ext_content_from_game_dirs: true
+[   0.324058] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_gdbstub: false
+[   0.324058] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gdbstub_port: 6543
+[   0.324059] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.program_args: 
+[   0.324059] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_exefs: false
+[   0.324059] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_nso: false
+[   0.324060] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_fs_access_log: false
+[   0.324060] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.reporting_services: false
+[   0.324060] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.quest_flag: false
+[   0.324061] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_dev_keys: false
+[   0.324061] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.extended_logging: false
+[   0.324061] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_debug_asserts: false
+[   0.324062] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_auto_stub: false
+[   0.324062] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_all_controllers: false
+[   0.324062] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.perform_vulkan_check: true
+[   0.324063] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_web_applet: true
+[   0.324063] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_level: Off
+[   0.324064] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_vulkan_calls: true
+[   0.324064] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_shader_dumps: false
+[   0.324064] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_memory_tracking: true
+[   0.324065] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_driver_debug: true
+[   0.324065] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_ring_buffer_size: 512
+[   0.324065] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.debug_knobs: 0
+[   0.324066] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_guest_shaders: false
+[   0.324066] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_macros: false
+[   0.324066] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_jit: false
+[   0.324067] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_hle: false
+[   0.324067] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.log_filter: *:Info
+[   0.324067] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.flush_line: false
+[   0.324068] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.censor_username: true
+[   0.324068] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.first_launch: true
+[   0.324068] Config <Info> common/settings.cpp:137:LogSettings: -- Network.network_interface: 
+[   0.324071] Config <Info> common/settings.cpp:137:LogSettings: -- Network.airplane_mode: true
+[   0.324072] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.web_api_url: api.ynet-fun.xyz
+[   0.324072] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.eden_username: Eden
+[   0.324073] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.disable_wgi_xinput: false
+[   0.324073] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_raw_input: false
+[   0.324073] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.controller_navigation: true
+[   0.324074] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_joycon_driver: true
+[   0.324074] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_procon_driver: false
+[   0.324074] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.vibration_enabled: true
+[   0.324075] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_accurate_vibrations: false
+[   0.324075] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.motion_enabled: true
+[   0.324075] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.udp_input_servers: 127.0.0.1:26760
+[   0.324076] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_udp_controller: false
+[   0.324076] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.pause_tas_on_load: true
+[   0.324077] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_enable: false
+[   0.324077] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_loop: false
+[   0.324077] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_show_recording_dialog: true
+[   0.324078] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning: false
+[   0.324078] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_sensitivity: 50
+[   0.324078] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_enabled: false
+[   0.324079] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_x_sensitivity: 50
+[   0.324079] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_y_sensitivity: 50
+[   0.324079] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_deadzone_counterweight: 20
+[   0.324080] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_decay_strength: 18
+[   0.324080] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_min_decay: 6
+[   0.324081] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.emulate_analog_keyboard: false
+[   0.324081] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.keyboard_enabled: false
+[   0.324081] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.debug_pad_enabled: false
+[   0.324082] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_device: min_x:100,min_y:50,max_x:1800,max_y:850
+[   0.324082] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_from_button_map: 0
+[   0.324082] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ring_controller: true
+[   0.324083] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ir_sensor: false
+[   0.324083] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.ir_sensor_device: auto
+[   0.324083] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.random_amiibo_id: false
+[   0.324084] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.cabinet_applet_mode: LLE
+[   0.324084] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.controller_applet_mode: HLE
+[   0.324084] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.data_erase_applet_mode: HLE
+[   0.324085] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.error_applet_mode: LLE
+[   0.324085] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.net_connect_applet_mode: LLE
+[   0.324088] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.player_select_applet_mode: LLE
+[   0.324089] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.swkbd_applet_mode: HLE
+[   0.324089] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.mii_edit_applet_mode: LLE
+[   0.324090] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.web_applet_mode: HLE
+[   0.324090] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.shop_applet_mode: HLE
+[   0.324090] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.photo_viewer_applet_mode: LLE
+[   0.324091] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.offline_web_applet_mode: LLE
+[   0.324091] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.login_share_applet_mode: HLE
+[   0.324091] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.wifi_web_auth_applet_mode: HLE
+[   0.324092] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.my_page_applet_mode: LLE
+[   0.324092] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.enable_overlay: false
+[   0.324092] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_debug_overlay: true
+[   0.324093] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.modern_seat_profiles: 
+[   0.324093] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_hints: true
+[   0.324094] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_history: true
+[   0.324094] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_history_size: 10
+[   0.324094] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_history_seconds: 5
+[   0.324095] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_history_gaps: false
+[   0.324095] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_bypass_steam: false
+[   0.324095] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_joycon_auto: true
+[   0.324096] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_pause_disconnect: true
+[   0.324096] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_player_lights: true
+[   0.324096] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_button_labels: false
+[   0.324097] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.console_debug_probes: false
+[   0.324098] Config <Info> common/settings.cpp:140:LogSettings: CacheDir: /home/user/projects/eden-wayland/build/wayland-run/user/cache
+[   0.324099] Config <Info> common/settings.cpp:141:LogSettings: ConfigDir: /home/user/projects/eden-wayland/build/wayland-run/user/config
+[   0.324099] Config <Info> common/settings.cpp:142:LogSettings: LoadDir: /home/user/projects/eden-wayland/build/wayland-run/user/load
+[   0.324100] Config <Info> common/settings.cpp:143:LogSettings: NANDDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[   0.324101] Config <Info> common/settings.cpp:144:LogSettings: SaveDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[   0.324101] Config <Info> common/settings.cpp:145:LogSettings: SDMCDir: /home/user/projects/eden-wayland/build/wayland-run/user/sdmc
+[   0.434181] Core <Info> core/core.cpp:332:Load: Loading nx-hbmenu (0000000000000000) ...
+[   0.439198] Render.Vulkan <Error> video_core/vulkan_common/vulkan_instance.cpp:31:AreExtensionsSupported: Required instance extension VK_KHR_wayland_surface is not available
+[   0.439237] Render.Vulkan <Error> video_core/renderer_vulkan/renderer_vulkan.cpp:272:RendererVulkan: Vulkan initialization failed on window system Wayland with error: VK_ERROR_EXTENSION_NOT_PRESENT
+[   0.439240] Render.Vulkan <Error> video_core/renderer_vulkan/renderer_vulkan.cpp:275:RendererVulkan: Hint: choose a present-capable GPU in Settings, or launch via prime-run or QT_QPA_PLATFORM=wayland/xcb so the compositor surface can be presented
+[   0.439249] HW.GPU <Error> video_core/video_core.cpp:63:CreateGPU: Failed to initialize GPU: Vulkan initialization error VK_ERROR_EXTENSION_NOT_PRESENT (window system: Wayland)
+[   0.439321] Core <Critical> core/core.cpp:346:Load: Failed to initialize system (Error 5)!

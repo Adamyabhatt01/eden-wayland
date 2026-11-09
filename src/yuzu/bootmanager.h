@@ -39,6 +39,8 @@ class QResizeEvent;
 class QShowEvent;
 class QTouchEvent;
 class QWheelEvent;
+class QScreen;
+class QWindow;
 
 class EmuThread;
 namespace Core {
@@ -129,6 +131,10 @@ public:
 
 public slots:
     void OnFramebufferSizeChanged();
+
+private:
+    void ConnectWindowSignals(QWindow* handle);
+    void ConnectDpiSignal(QScreen* screen);
 
 signals:
     /// Emitted when the window is closed
