@@ -22,7 +22,6 @@ depends=(
     'sdl3'
     'gamemode'
     'libcups'
-    'cubeb'
 )
 makedepends=(
     'cmake'
@@ -44,7 +43,7 @@ optdepends=(
 # Runtime Qt platform is Wayland-first in this fork; override with
 # QT_QPA_PLATFORM=xcb for the XWayland fallback. Software deps are resolved
 # by CMake/CPM at configure time (see CMakeLists.txt).
-_source="eden-wayland::git+https://github.com/Adamyabhatt01/eden-wayland.git#$branch=linux-wayland"
+_source='eden-wayland::git+https://github.com/Adamyabhatt01/eden-wayland.git#branch=linux-wayland'
 source=($_source)
 sha256sums=('SKIP')
 
