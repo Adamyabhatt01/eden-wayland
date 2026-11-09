@@ -4,7 +4,7 @@
 # public GitHub remote. qt6-wayland provides the native Wayland platform
 # plugin; use QT_QPA_PLATFORM=xcb for the XWayland fallback.
 pkgname=eden-wayland
-pkgver=0.2.1.r29099.gb23e10f2fa
+pkgver=0.2.1.r29100.g3a83856027
 pkgrel=1
 pkgdesc="Multiplatform FOSS Switch 1 emulator (native Wayland fork)"
 arch=('x86_64')
@@ -28,7 +28,6 @@ makedepends=(
     'ninja'
     'git'
     'pkgconf'
-    'nasm'
     'brotli'
     'zstd'
     'boost'
@@ -58,9 +57,6 @@ build() {
     cmake -S . -B build -G Ninja \
         -DCMAKE_BUILD_TYPE=Release \
         -DENABLE_QT=ON \
-        -DENABLE_DEBUG_TOOLS=ON \
-        -DYUZU_USE_EXTERNAL_FFMPEG=ON \
-        -DYUZU_USE_EXTERNAL_QT=ON \
         -DVulkanHeaders_FORCE_BUNDLED=ON \
         -DVulkanUtilityLibraries_FORCE_BUNDLED=ON
     cmake --build build -j"$(nproc)"
