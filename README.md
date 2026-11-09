@@ -40,6 +40,25 @@ Written in C++, with builds for Windows, Linux, macOS, Android, FreeBSD and more
   <a href="#license">License</a>
 </p>
 
+## This fork
+
+This is a **personal learning project** based on Eden. It exists to add native Wayland support to the emulator (upstream defaults to XWayland).
+
+**Changes made (fork is in `linux-wayland` branch, see `docs/wayland/PATCHES.md`):**
+
+- **A1** — Native Wayland is the default platform on desktop Unix (`QT_QPA_PLATFORM=wayland` fallback to `xcb`); `DISPLAY` is only synthesized for non-Wayland sessions.
+- **A2** — Diagnostics: Vulkan window system, surface, and swapchain state logging.
+- **B1** — Build requires `wayland-client` headers for the Vulkan Wayland surface.
+- **C1** — GPU selection falls back to a present-capable device when the configured one cannot present.
+- **D1** — Zero-extent (minimized) surfaces no longer publish a stale swapchain; frames are safely discarded instead of spinning.
+- **D2** — Out-of-date and surface-loss recovery (Linux surface recreation, safe frame discard).
+- **C2** — Actionable Vulkan initialization errors (window system, prime-run/`QT_QPA_PLATFORM` hints).
+- **E1** — Rounded framebuffer extents for fractional scaling; refresh on DPI change without a resize.
+- **F1** — Fullscreen exit restores the render window's own flags instead of the main window's.
+- **Packaging** — Arch Linux `PKGBUILD` (`packaging/arch/PKGBUILD`), plus `tools/wayland/benchmark.sh` for A/B comparisons.
+
+Upstream Eden remains the authoritative project; this fork tracks it via `tools/upstream-sync/audit-upstream.sh`.
+
 ## Compatibility
 
 The emulator is capable of running most commercial games at full speed, provided you meet the necessary hardware requirements.
