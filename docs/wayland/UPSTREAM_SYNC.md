@@ -9,11 +9,11 @@
 | Last synchronized upstream commit | `943f1fc76087adcfc893fb1ca3aea507df15d004` (2026-10-30) |
 | Fork base commit | same as last synchronized commit |
 | Integration branch | `linux-wayland` |
-| Custom commits | none yet (see `PATCHES.md`) |
+| Custom commits | 18 at the start of the 2026-11-09 docs pass; source patches A1/A2/B1/C1 (see `git log` and `PATCHES.md`) |
 | Imported upstream performance work | none yet |
 | Pending upstream changes | none recorded; run the audit script |
 | Open conflicts | none |
-| Known regressions | none introduced (no code changes yet) |
+| Known regressions | none known; C1 changed GPU selection (see `TESTING.md`) |
 | Latest upstream release | `v0.2.1` (2026-06-01); `master` is 411 commits ahead |
 
 The sync state file is `.git/eden-wayland-upstream-sync` and is intentionally

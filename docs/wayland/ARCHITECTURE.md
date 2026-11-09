@@ -5,6 +5,10 @@ Base commit: `943f1fc76087adcfc893fb1ca3aea507df15d004` (`upstream/master`,
 to that commit. Findings marked **[verified]** were read directly during the
 audit; runtime behaviour is tracked separately in `TESTING.md`.
 
+> Update (2026-11-09): C1 (present-support-aware GPU selection) has since
+> landed on `linux-wayland`. The audit below remains the reference for the
+> base commit and for the remaining reliability work.
+
 ## 1. Executive summary
 
 Eden's desktop frontend is a Qt 6 Widgets application that renders through a

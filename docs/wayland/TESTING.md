@@ -142,7 +142,7 @@ feature.
 | T04 | Render a frame (legal content or self-test) | Surface + swapchain created, frames presented | Pass (hbmenu NRO) |
 | T05 | Intel iGPU only | Intel device selected, present works | Pass (loader-selected Intel) |
 | T06 | NVIDIA dGPU via PRIME | NVIDIA device selected, present works | Pass (default device sort selects NVIDIA) |
-| T07 | Explicit GPU selection in settings | Chosen present-capable GPU used; invalid choice explains and falls back | Not run |
+| T07 | Explicit GPU selection in settings | Chosen present-capable GPU used; invalid choice explains and falls back | Pass (C1; index 99 falls back, index 1 selects Intel) |
 | T08 | Window resize (many sizes, rapid) | Swapchain recreated, no validation errors, no crash | Pass (single compositor-driven resize) |
 | T09 | Minimise / restore | No hang, no stale frame, swapchain valid after restore | Not run |
 | T10 | Fullscreen on/off | `showFullScreen()` works, state restored | Partial (enter observed; toggle-off not exercised) |
@@ -276,13 +276,14 @@ contains `908x975` and `1016x975`.
 | 2026-10-31 | Same build | T10: fullscreen, native Wayland, hbmenu | Partial | Fullscreen swapchain recreated at `1920x1017`, 60 FPS, status bar `DOCKED`; returning to windowed was not exercised. Evidence: `...-nvidia-fullscreen.png` |
 | 2026-10-31 | Same build | T19: close during emulation | Pass | Confirmation dialog appeared, Return accepted; log ends with `ForceStop: Force stopping EmuThread`, config written; `gamemode` `dlopen` warning expected (library not installed); no crash dump |
 | 2026-10-31 | Same build | T20: XWayland full session, hbmenu | Pass | `Qt platform: xcb`, `Created Xlib surface`, `Window system: X11`, swapchain `100x30` → `908x975` → `1016x975` (after compositor resize), 60 FPS; `hyprctl`: class `eden`, `xwayland=true`. Evidence: `docs/wayland/evidence/2026-10-31-xwayland.log` |
+| 2026-10-31 | Fork `e479fef767`, RelWithDebInfo | T07: C1 GPU selection on native Wayland | Pass | `vulkan_device=99` logs an out-of-range error and falls back to GPU[0] (NVIDIA) which presents; `vulkan_device=1` selects Intel and presents a 1280x720 Wayland swapchain. Evidence: commit message only; no runtime log archived |
 | 2026-10-31 | Same build, validation layers 1.4.363 (`Renderer.debug=true`) | T21: validation during hbmenu boot and presentation | Pass with triaged warnings | Zero swapchain/surface/present VUIDs. Warnings are upstream renderer/device issues (quad-control dependency, stencil-export SPIR-V, R5G6B5 storage usage); classified in §5. Evidence: `...native-wayland-validation.log` |
 | 2026-10-31 | Same build | T22: portable profile isolation | Pass | All logs/config/saves stayed under `build/wayland-run/user/`; `~/.config/eden` and `~/.local/share/eden` untouched; `renderer_debug` reverted to `false` after the validation run |
 
-These rows describe the **official binary**, not the fork. They prove the
-environment and Qt Wayland path; they do not prove emulator Vulkan
-presentation. No result in this file may be recorded until it has actually been
-observed.
+Rows identify the build under test. Official-binary rows prove the environment
+and Qt Wayland path only; fork rows with an hbmenu entry also prove the fork's
+Vulkan presentation path. No result in this file may be recorded until it has
+actually been observed.
 
 Only real, observed results belong here, with the exact build commit,
 environment and log excerpt (or a path to the saved log).

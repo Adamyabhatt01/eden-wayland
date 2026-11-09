@@ -4,7 +4,7 @@ All fork-specific modifications, grouped by subsystem. Keep this list in sync
 with `git log upstream/master..linux-wayland`.
 
 Base commit: `943f1fc76087adcfc893fb1ca3aea507df15d004`.
-Source patches implemented: **A1, A2, B1**. The remaining fork commits are
+Source patches implemented: **A1, A2, B1, C1**. The remaining fork commits are
 documentation, read-only diagnostics, or build/run scripts. Run
 `git log --oneline upstream/master..linux-wayland` for the current list
 (hashes are kept out of this file so it cannot go stale).
@@ -29,12 +29,12 @@ documentation, read-only diagnostics, or build/run scripts. Run
 | A1 | `fix: stop steering Wayland sessions toward XWayland` | `src/yuzu/main.cpp`, `src/yuzu/main_window.cpp` | Removes the blocking "Wayland is known to have significant performance issues" modal. `DISPLAY` is only synthesized for non-Wayland sessions, and an explicit Force X11 setting now overrides an ambient `QT_QPA_PLATFORM`. Native-Wayland detection uses `QGuiApplication::platformName()`, never the environment variable. Verified: patched binary reports `Qt platform: wayland`; XWayland reports `xcb`; Force X11 with `QT_QPA_PLATFORM=wayland` produces an XWayland window per `hyprctl clients` |
 | A2 | `diagnostics: log Vulkan window system, surface and swapchain state` | `renderer_vulkan.cpp`, `vk_swapchain.cpp`, `vulkan_surface.cpp` | Logs window system type, render surface handle/scale, WSI surface creation, swapchain extent/format/color space/present mode/image count, and surface capabilities. Avoids a public present-mode accessor by logging in `CreateSwapchain`. Verified with an hbmenu NRO on native Wayland (NVIDIA and Intel) and XWayland, including resize and fullscreen re-creations; validation layers reported no swapchain/surface/present VUIDs |
 | B1 | `build: require wayland-client headers for the Vulkan Wayland surface` | `src/video_core/CMakeLists.txt` | `VK_USE_PLATFORM_WAYLAND_KHR` pulls in `<wayland-client.h>`, but nothing declared it. `pkg_check_modules` now fails configuration with a clear message when the headers are absent. Only include directories are added because Eden passes native handles through without calling `wl_*` functions. Verified: configure finds `wayland-client 1.26.0` |
+| C1 | `fix: choose a Vulkan GPU that can present on the window surface` | `renderer_vulkan.cpp` | Enumerates every GPU with its present support, falls back to the next present-capable device when the configured one cannot present, and treats an out-of-range index as a loud error with a GPU[0] fallback. Verified on Hyprland: index 99 falls back to GPU[0] (NVIDIA) and still presents; index 1 selects Intel and presents a 1280x720 Wayland swapchain. Evidence is recorded in `TESTING.md` |
 
 ## Planned patches (not yet implemented)
 
 | ID | Commit subject (planned) | Files | Phase | Notes |
 |---|---|---|---|---|
-| C1 | `fix: select a GPU that can present on the Wayland surface` | `renderer_vulkan.cpp`, `vulkan_device.cpp` | 4 | Fallback with loud diagnostics; respects explicit choice |
 | C2 | `fix: report actionable Vulkan initialization failures` | `renderer_vulkan.cpp`, `bootmanager.cpp` | 4 | Device matrix in error path |
 | D1 | `fix: handle zero-extent and minimised Wayland surfaces` | `vk_swapchain.*`, `vk_present_manager.cpp` | 4 | No stale swapchain, bounded retries |
 | D2 | `fix: recover from out-of-date and lost Wayland surfaces` | `vk_swapchain.h`, `vk_present_manager.*`, `renderer_vulkan.*` | 4 | Linux surface recreation, safe frame discard |

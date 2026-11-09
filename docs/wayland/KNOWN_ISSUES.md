@@ -1,7 +1,7 @@
 # Known Issues and Limitations
 
-State: audit and native-Wayland prototype complete (A1/A2/B1 landed on
-`linux-wayland` through `41ad87851a`). Items are marked **[upstream]** when
+State: audit and native-Wayland prototype complete (A1/A2/B1/C1 landed on
+`linux-wayland` through `e479fef767`). Items are marked **[upstream]** when
 present in `943f1fc7`, **[fork]** when introduced here (none yet), and
 **[environment]** when they are local constraints. Runtime evidence lives in
 `docs/wayland/evidence/`; verification status in `TESTING.md`.
@@ -17,7 +17,7 @@ present in `943f1fc7`, **[fork]** when introduced here (none yet), and
 | K5 | `is_outdated` is set but ignored by `NeedsRecreation()` | `vk_swapchain.h:46-48` | Fix (D2) |
 | K6 | Zero-extent surface returns early after overwriting metadata, leaving a stale swapchain; acquire uses an infinite timeout and the recreate loop is unbounded | `vk_swapchain.cpp:148-150,163`, `vk_present_manager.cpp:437-439` | Fix (D1) |
 | K7 | Surface loss is unrecoverable on Linux (surface recreated only on Android); `DiscardFrame` submits a wait with no matching signal | `vk_present_manager.cpp:380-424` | Fix (D2) |
-| K8 | No fallback when the preferred (discrete) GPU cannot present on the surface; initialization throws | `vulkan_device.cpp:1544-1579`, `vulkan_wrapper.cpp:50-69` | Fix (C1) |
+| K8 | **Fixed (C1).** The preferred GPU was used even when it could not present on the surface, and initialization threw with no fallback | `src/video_core/renderer_vulkan/renderer_vulkan.cpp` | Present support is checked for every device; the configured device is used if it can present, otherwise the first present-capable device is selected with a warning. An out-of-range index falls back to GPU[0] with an error log |
 | K9 | Instance asks for Vulkan 1.3 while only requiring 1.1; `apiVersion` parameter is ignored | `vulkan_wrapper.cpp:456-473` | Evaluate; low risk with current drivers |
 | K10 | **Fixed (B1).** `wayland-client` headers were required by the Vulkan platform header but not declared in CMake | `vulkan.h:18-21`, `src/video_core/CMakeLists.txt` | `pkg_check_modules(WAYLAND_CLIENT)` added behind the desktop-Unix guard |
 | K11 | Synchronous FIFO presentation on the GPU thread by default (`async_presentation=false` on desktop) | `src/common/settings.h:643-649`, `vk_present_manager.cpp:196-200` | Measure, then decide (D3) |
@@ -46,7 +46,7 @@ present in `943f1fc7`, **[fork]** when introduced here (none yet), and
 
 | ID | Issue | Impact |
 |---|---|---|
-| N1 | **Confirmed.** Device sort prefers the discrete GPU unconditionally; `vulkan_device=0` selects the RTX 3050 on this laptop even without PRIME environment (`vulkaninfo` lists Intel as GPU0) | May initialise NVIDIA when the user expected Intel; no fallback yet if presentation fails (C1) |
+| N1 | **Mitigated (C1).** Device sort still prefers the discrete GPU unconditionally; `vulkan_device=0` selects the RTX 3050 on this laptop even without PRIME environment (`vulkaninfo` lists Intel as GPU0) | NVIDIA may still be chosen by default; if it cannot present, C1 now falls back to the next present-capable GPU with a warning. An explicit present-capable selection is honoured |
 | N2 | `prime-run` sets `__NV_PRIME_RENDER_OFFLOAD=1` and `__VK_LAYER_NV_optimus=NVIDIA_only`; without it, loader ICD order applies | Results must state the exact launch environment |
 | N3 | 4 GiB VRAM is a hard limit for heavy titles at high scaling | Benchmark workload must fit; monitor VRAM |
 | N4 | NVIDIA Wayland presentation support depends on driver/compositor cooperation | Must be verified on Hyprland, not assumed |
