@@ -1,0 +1,458 @@
+[   0.000292] Frontend <Info> qt_common/qt_common.cpp:243:Init: Eden Version: Eden Development Build | linux-wayland-e287b515ab-linux-wayland
+[   0.000304] Frontend <Info> qt_common/qt_common.cpp:171:LogRuntimes: Qt Compile: 6.12.0 Runtime: 6.12.0
+[   0.000306] Frontend <Info> qt_common/qt_common.cpp:259:Init: Host CPU: 12th Gen Intel(R) Core(TM) i5-12500H | AVX2 | FMA
+[   0.000365] Frontend <Info> qt_common/qt_common.cpp:261:Init: Host CPU Cores: 8
+[   0.000366] Frontend <Info> qt_common/qt_common.cpp:264:Init: Host CPU Threads: 16
+[   0.000383] Frontend <Info> qt_common/qt_common.cpp:265:Init: Host OS: Arch Linux
+[   0.000390] Frontend <Info> qt_common/qt_common.cpp:266:Init: Host RAM: 15.30 GiB
+[   0.000391] Frontend <Info> qt_common/qt_common.cpp:268:Init: Host Swap: 8.00 GiB
+[   0.001663] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.003766] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[   0.044336] Input <Info> input_common/drivers/udp_client.cpp:144:UDPClient: Udp Initialization started
+[   0.044382] Input <Info> input_common/drivers/udp_client.cpp:338:StartCommunication: Starting communication with UDP input server on 127.0.0.1:26760
+[   0.281827] Input <Info> input_common/drivers/joycon.cpp:25:Joycons: Joycon driver Initialization started
+[  18.384723] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  18.384727] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  18.384736] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  18.384742] Frontend <Info> yuzu/main_window.cpp:4459:SetFirmwareVersion: Installed firmware: No firmware available
+[  18.384846] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  18.384847] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  18.384850] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  18.384852] Frontend <Info> yuzu/main_window.cpp:4459:SetFirmwareVersion: Installed firmware: No firmware available
+[  18.384887] Frontend <Info> yuzu/main_window.cpp:4435:OnCheckGraphicsBackend: Qt platform: wayland | QT_QPA_PLATFORM: wayland | session: wayland | WAYLAND_DISPLAY: wayland-1 | DISPLAY: :1 | force_x11: false
+[  18.384888] Frontend <Info> yuzu/main_window.cpp:4443:OnCheckGraphicsBackend: Using native Wayland. XWayland remains available through the 'Force X11 as Graphics Backend' setting.
+[  18.384917] Common.Filesystem <Error> common/fs/fs.cpp:418:IterateDirEntries: Filesystem object at path=/home/user/projects/eden-wayland/build/wayland-run/user/nand/user/save/0000000000000000 does not exist
+[  18.472945] Render.Vulkan <Info> video_core/vulkan_common/vulkan_surface.cpp:109:CreateSurface: Created Wayland surface (wl_display=0x55ea55ff9b20, wl_surface=0x55ea56bde670)
+[  45.693563] Frontend <Info> frontend_common/firmware_manager.cpp:24:InstallKeys: Installing key files from /home/user/Downloads/Keys-20.5.0/prod.keys
+[  47.636347] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  47.636351] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  47.636381] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  47.636387] Frontend <Info> yuzu/main_window.cpp:4459:SetFirmwareVersion: Installed firmware: No firmware available
+[  78.990788] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:79:SynthesizeSystemArchive: Synthesizing system archive 'SystemVersion' (0x100000000000809).
+[  78.990793] Common.Filesystem <Warning> core/file_sys/system_archive/system_version.cpp:15:SystemVersion: called, using hardcoded firmware version: c2663accb7490a6ccfe9bc4dfd120ca215490525, NintendoSDK Firmware for NX 23.0.0-4.0
+[  78.990801] Service.FS <Info> core/file_sys/system_archive/system_archive.cpp:83:SynthesizeSystemArchive:     - System archive generation successful!
+[  78.990807] Frontend <Info> yuzu/main_window.cpp:4459:SetFirmwareVersion: Installed firmware: No firmware available
+[  87.944078] Frontend <Info> qt_common/util/content.cpp:65:InstallFirmware: Installing firmware from /tmp/eden/firmware
+[  87.944508] Frontend <Info> qt_common/util/content.cpp:111:InstallFirmware: Cleaned nand/system/Content/registered folder in preparation for new firmware.
+[  89.914068] Frontend <Info> yuzu/main_window.cpp:4473:SetFirmwareVersion: Installed firmware: 20.5.0
+[  95.223877] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[  95.225529] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[ 100.804332] Frontend <Info> yuzu/main_window.cpp:1963:BootGame: Eden starting...
+[ 100.804751] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[ 100.806749] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[ 100.839107] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/0100F43008C44000.ini
+[ 100.839174] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Game Specific configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/custom/0100F43008C44000.ini
+[ 100.840363] Config <Info> common/settings.cpp:135:LogSettings: Eden Configuration:
+[ 100.840365] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_unit: 2208904143
+[ 100.840366] Config <Info> common/settings.cpp:137:LogSettings: M- Debugging.serial_battery: 1178839674
+[ 100.840366] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_engine: auto
+[ 100.840367] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.output_device: auto
+[ 100.840367] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.input_device: auto
+[ 100.840367] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.volume: 100
+[ 100.840368] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.audio_muted: false
+[ 100.840368] Config <Info> common/settings.cpp:137:LogSettings: -- Audio.dump_audio_commands: false
+[ 100.840377] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_multi_core: true
+[ 100.840378] Config <Info> common/settings.cpp:137:LogSettings: -- Core.memory_layout_mode: Memory_4Gb
+[ 100.840378] Config <Info> common/settings.cpp:137:LogSettings: -- Core.use_speed_limit: true
+[ 100.840378] Config <Info> common/settings.cpp:137:LogSettings: -- Core.speed_limit: 100
+[ 100.840379] Config <Info> common/settings.cpp:137:LogSettings: -- Core.slow_speed_limit: 50
+[ 100.840379] Config <Info> common/settings.cpp:137:LogSettings: -- Core.turbo_speed_limit: 200
+[ 100.840379] Config <Info> common/settings.cpp:137:LogSettings: -- Core.current_speed_mode: Standard
+[ 100.840380] Config <Info> common/settings.cpp:137:LogSettings: -- Core.sync_core_speed: false
+[ 100.840380] Config <Info> common/settings.cpp:137:LogSettings: -- Core.enable_cheats_by_default: true
+[ 100.840381] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_backend: Dynarmic
+[ 100.840381] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_accuracy: Auto
+[ 100.840381] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.use_custom_cpu_ticks: false
+[ 100.840382] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpu_ticks: 16000
+[ 100.840382] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_page_tables: true
+[ 100.840382] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_block_linking: true
+[ 100.840383] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_return_stack_buffer: true
+[ 100.840383] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fast_dispatcher: true
+[ 100.840383] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_context_elimination: true
+[ 100.840384] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_const_prop: true
+[ 100.840384] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_misc_ir: true
+[ 100.840384] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_reduce_misalign_checks: true
+[ 100.840385] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem: true
+[ 100.840385] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_fastmem_exclusives: true
+[ 100.840385] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_recompile_exclusives: true
+[ 100.840386] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_ignore_memory_aborts: true
+[ 100.840386] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_host_mmu: true
+[ 100.840386] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_unfuse_fma: true
+[ 100.840387] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_reduce_fp_error: true
+[ 100.840387] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_standard_fpcr: true
+[ 100.840388] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_inaccurate_nan: true
+[ 100.840388] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_fastmem_check: true
+[ 100.840388] Config <Info> common/settings.cpp:137:LogSettings: -- Cpu.cpuopt_unsafe_ignore_global_monitor: true
+[ 100.840389] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.backend: Vulkan
+[ 100.840389] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vulkan_device: 0
+[ 100.840389] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.resolution_setup: Res1X
+[ 100.840390] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vsync: Fifo
+[ 100.840390] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.scaling_filter: NearestNeighbor
+[ 100.840390] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fsr_sharpening_slider: 25
+[ 100.840391] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.aspect_ratio: R16_9
+[ 100.840391] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.anti_aliasing: None
+[ 100.840391] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_chain: 
+[ 100.840395] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_preset: 
+[ 100.840396] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.post_shader_enabled: true
+[ 100.840396] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen: false
+[ 100.840396] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_multiplier: 2
+[ 100.840397] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_target_rate: 0
+[ 100.840397] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale_auto: true
+[ 100.840397] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_flow_scale: 75
+[ 100.840398] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_queue_target: 0
+[ 100.840398] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_gen_dump_flow: false
+[ 100.840398] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_gpu_emulation: true
+[ 100.840399] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fullscreen_mode: Exclusive
+[ 100.840399] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_red: 0
+[ 100.840400] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_green: 0
+[ 100.840400] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.bg_blue: 0
+[ 100.840400] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_accuracy: High
+[ 100.840401] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dma_accuracy: Default
+[ 100.840401] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_fence_behavior: Default
+[ 100.840401] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vram_usage_mode: Conservative
+[ 100.840402] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nvdec_emulation: Cpu
+[ 100.840402] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.max_anisotropy: Automatic
+[ 100.840402] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.accelerate_astc: Gpu
+[ 100.840403] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.frame_pacing_mode: Target_Auto
+[ 100.840403] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.astc_recompression: Uncompressed
+[ 100.840403] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sync_memory_operations: false
+[ 100.840404] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.force_max_clock: false
+[ 100.840404] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_disk_shader_cache: true
+[ 100.840405] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_vulkan_driver_pipeline_cache: true
+[ 100.840405] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_compute_pipelines: false
+[ 100.840405] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_video_framerate: false
+[ 100.840406] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_reactive_flushing: true
+[ 100.840406] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.barrier_feedback_loops: true
+[ 100.840406] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.enable_buffer_history: false
+[ 100.840407] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.skip_cpu_inner_invalidation: false
+[ 100.840407] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.async_presentation: false
+[ 100.840407] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.fix_bloom_effects: false
+[ 100.840408] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.emulate_bgr565: false
+[ 100.840408] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.use_asynchronous_shaders: false
+[ 100.840408] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_texture_size: Large
+[ 100.840409] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_stream_size: Medium
+[ 100.840409] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_chunk_size: Medium
+[ 100.840412] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.gpu_unswizzle_enabled: false
+[ 100.840413] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.dyna_state: EDS2
+[ 100.840413] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.sample_shading_fraction: 0
+[ 100.840414] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.vertex_input_dynamic_state: true
+[ 100.840415] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.debug: false
+[ 100.840415] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.shader_feedback: false
+[ 100.840415] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.nsight_aftermath: false
+[ 100.840416] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_shader_loop_safety_checks: false
+[ 100.840416] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.renderdoc_hotkey: false
+[ 100.840417] Config <Info> common/settings.cpp:137:LogSettings: -- Renderer.disable_buffer_reorder: false
+[ 100.840417] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_cpu_time: Normal
+[ 100.840417] Config <Info> common/settings.cpp:137:LogSettings: -- System.fast_gpu_time: Boost
+[ 100.840418] Config <Info> common/settings.cpp:137:LogSettings: -- System.language_index: EnglishAmerican
+[ 100.840418] Config <Info> common/settings.cpp:137:LogSettings: -- System.region_index: Usa
+[ 100.840418] Config <Info> common/settings.cpp:137:LogSettings: -- System.time_zone_index: Auto
+[ 100.840419] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_enabled: false
+[ 100.840419] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc: 0
+[ 100.840419] Config <Info> common/settings.cpp:137:LogSettings: -- System.custom_rtc_offset: 0
+[ 100.840420] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed_enabled: false
+[ 100.840420] Config <Info> common/settings.cpp:137:LogSettings: -- System.rng_seed: 0
+[ 100.840420] Config <Info> common/settings.cpp:137:LogSettings: -- System.device_name: Eden
+[ 100.840421] Config <Info> common/settings.cpp:137:LogSettings: -- System.current_user: 0
+[ 100.840421] Config <Info> common/settings.cpp:137:LogSettings: -- System.use_docked_mode: Docked
+[ 100.840421] Config <Info> common/settings.cpp:137:LogSettings: -- System.sound_index: Stereo
+[ 100.840422] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.use_virtual_sd: true
+[ 100.840422] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_inserted: false
+[ 100.840422] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_current_game: false
+[ 100.840423] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.gamecard_path: 
+[ 100.840423] Config <Info> common/settings.cpp:137:LogSettings: -- Data Storage.ext_content_from_game_dirs: true
+[ 100.840423] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_gdbstub: false
+[ 100.840424] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gdbstub_port: 6543
+[ 100.840424] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.program_args: 
+[ 100.840424] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_exefs: false
+[ 100.840425] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_nso: false
+[ 100.840425] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_fs_access_log: false
+[ 100.840426] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.reporting_services: false
+[ 100.840426] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.quest_flag: false
+[ 100.840426] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_dev_keys: false
+[ 100.840427] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.extended_logging: false
+[ 100.840427] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_debug_asserts: false
+[ 100.840427] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.use_auto_stub: false
+[ 100.840430] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.enable_all_controllers: false
+[ 100.840431] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.perform_vulkan_check: true
+[ 100.840431] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_web_applet: true
+[ 100.840432] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_level: Off
+[ 100.840432] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_vulkan_calls: true
+[ 100.840432] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_shader_dumps: false
+[ 100.840433] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_memory_tracking: true
+[ 100.840433] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_driver_debug: true
+[ 100.840433] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.gpu_log_ring_buffer_size: 512
+[ 100.840434] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.debug_knobs: 0
+[ 100.840434] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_guest_shaders: false
+[ 100.840434] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.dump_macros: false
+[ 100.840435] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_jit: false
+[ 100.840435] Config <Info> common/settings.cpp:137:LogSettings: -- Debugging.disable_macro_hle: false
+[ 100.840436] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.log_filter: *:Info
+[ 100.840436] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.flush_line: false
+[ 100.840436] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.censor_username: true
+[ 100.840437] Config <Info> common/settings.cpp:137:LogSettings: -- Miscellaneous.first_launch: true
+[ 100.840437] Config <Info> common/settings.cpp:137:LogSettings: -- Network.network_interface: 
+[ 100.840437] Config <Info> common/settings.cpp:137:LogSettings: -- Network.airplane_mode: true
+[ 100.840438] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.web_api_url: api.ynet-fun.xyz
+[ 100.840438] Config <Info> common/settings.cpp:137:LogSettings: -- WebService.eden_username: Eden
+[ 100.840438] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.disable_wgi_xinput: false
+[ 100.840439] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_raw_input: false
+[ 100.840439] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.controller_navigation: true
+[ 100.840439] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_joycon_driver: true
+[ 100.840440] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_procon_driver: false
+[ 100.840440] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.vibration_enabled: true
+[ 100.840440] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_accurate_vibrations: false
+[ 100.840441] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.motion_enabled: true
+[ 100.840441] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.udp_input_servers: 127.0.0.1:26760
+[ 100.840441] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_udp_controller: false
+[ 100.840442] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.pause_tas_on_load: true
+[ 100.840442] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_enable: false
+[ 100.840443] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_loop: false
+[ 100.840443] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.tas_show_recording_dialog: true
+[ 100.840443] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning: false
+[ 100.840444] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_sensitivity: 50
+[ 100.840444] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_enabled: false
+[ 100.840444] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_x_sensitivity: 50
+[ 100.840447] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_y_sensitivity: 50
+[ 100.840448] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_deadzone_counterweight: 20
+[ 100.840448] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_decay_strength: 18
+[ 100.840449] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.mouse_panning_min_decay: 6
+[ 100.840449] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.emulate_analog_keyboard: false
+[ 100.840449] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.keyboard_enabled: false
+[ 100.840450] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.debug_pad_enabled: false
+[ 100.840450] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_device: min_x:100,min_y:50,max_x:1800,max_y:850
+[ 100.840451] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.touch_from_button_map: 0
+[ 100.840451] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ring_controller: true
+[ 100.840451] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.enable_ir_sensor: false
+[ 100.840452] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.ir_sensor_device: auto
+[ 100.840452] Config <Info> common/settings.cpp:137:LogSettings: -- Controls.random_amiibo_id: false
+[ 100.840452] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.cabinet_applet_mode: LLE
+[ 100.840453] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.controller_applet_mode: HLE
+[ 100.840453] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.data_erase_applet_mode: HLE
+[ 100.840453] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.error_applet_mode: LLE
+[ 100.840454] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.net_connect_applet_mode: LLE
+[ 100.840454] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.player_select_applet_mode: LLE
+[ 100.840454] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.swkbd_applet_mode: HLE
+[ 100.840455] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.mii_edit_applet_mode: LLE
+[ 100.840455] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.web_applet_mode: HLE
+[ 100.840455] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.shop_applet_mode: HLE
+[ 100.840456] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.photo_viewer_applet_mode: LLE
+[ 100.840456] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.offline_web_applet_mode: LLE
+[ 100.840456] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.login_share_applet_mode: HLE
+[ 100.840457] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.wifi_web_auth_applet_mode: HLE
+[ 100.840457] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.my_page_applet_mode: LLE
+[ 100.840458] Config <Info> common/settings.cpp:137:LogSettings: -- LibraryApplet.enable_overlay: false
+[ 100.840458] Config <Info> common/settings.cpp:140:LogSettings: CacheDir: /home/user/projects/eden-wayland/build/wayland-run/user/cache
+[ 100.840459] Config <Info> common/settings.cpp:141:LogSettings: ConfigDir: /home/user/projects/eden-wayland/build/wayland-run/user/config
+[ 100.840460] Config <Info> common/settings.cpp:142:LogSettings: LoadDir: /home/user/projects/eden-wayland/build/wayland-run/user/load
+[ 100.840461] Config <Info> common/settings.cpp:143:LogSettings: NANDDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[ 100.840461] Config <Info> common/settings.cpp:144:LogSettings: SaveDir: /home/user/projects/eden-wayland/build/wayland-run/user/nand
+[ 100.840462] Config <Info> common/settings.cpp:145:LogSettings: SDMCDir: /home/user/projects/eden-wayland/build/wayland-run/user/sdmc
+[ 100.871642] Loader <Info> core/loader/nca.cpp:102:Load: Read heap size 0x6e6f69 bytes from main.npdm
+[ 100.871680] Loader <Info> core/file_sys/patch_manager.cpp:199:PatchExeFS: Patching ExeFS for title_id=0100F43008C44000
+[ 100.871724] Loader <Info> core/file_sys/patch_manager.cpp:358:PatchExeFS:     ExeFS: LayeredExeFS patches applied successfully
+[ 101.044706] Loader <Info> core/file_sys/patch_manager.cpp:475:HasNSOPatch: Querying NSO patch existence for build_id=88FB7786A17B61768163AD3D8052C93CEFC61D81, name=rtld
+[ 101.087994] Loader <Info> core/file_sys/patch_manager.cpp:475:HasNSOPatch: Querying NSO patch existence for build_id=7222E13ECF6ADB3249B5DD5C57FA40B102245FCE, name=main
+[ 101.102441] Loader <Info> core/file_sys/patch_manager.cpp:475:HasNSOPatch: Querying NSO patch existence for build_id=DF7A3960C74C3A4803F826C5871532523AA9CF2A, name=sdk
+[ 101.103671] Loader <Info> core/loader/nca.cpp:120:Load: Set pointer buffer size to 0x8000 bytes for ProgramID 0x0100f43008c44000 (Heap size: 0x6e6f69)
+[ 101.103748] Loader <Info> core/loader/nca.cpp:127:Load: Control data for 0100F43008C44000: name="Pokémon Legends: Z-A" supported_languages=000070FD
+[ 101.103766] Core <Info> core/core.cpp:332:Load: Loading Pokémon Legends: Z-A (0100F43008C44000) ...
+[ 102.596842] Render.Vulkan <Info> video_core/vulkan_common/vulkan_surface.cpp:109:CreateSurface: Created Wayland surface (wl_display=0x55ea55ff9b20, wl_surface=0x55ea56c6a750)
+[ 102.598948] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:156:CreateDevice: Vulkan devices (2):
+[ 102.599086] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:159:CreateDevice:   GPU[0]: NVIDIA GeForce RTX 3050 Laptop GPU (vendor 0x10de, type 2) | present yes
+[ 102.599089] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:159:CreateDevice:   GPU[1]: Intel(R) Iris(R) Xe Graphics (ADL GT2) (vendor 0x8086, type 1) | present yes
+[ 102.599235] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_EXT_external_memory_host
+[ 102.599236] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:1081:GetSuitability: Device doesn't support extension VK_EXT_robustness2
+[ 102.599249] Render.Vulkan <Warning> video_core/vulkan_common/vulkan_device.cpp:1290:GetSuitability: Disabling broken VK_EXT_vertex_input_dynamic_state
+[ 102.599322] Render.Vulkan <Warning> video_core/vulkan_common/vulkan_device.cpp:588:Device: Ampere and newer have broken float16 math
+[ 102.599323] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:594:Device: NVIDIA: VK_EXT_shader_stencil_export not supported, using hardware blits for depth/stencil operations
+[ 102.599324] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:597:Device:   D24S8 hardware blit support: true
+[ 102.599325] Render.Vulkan <Info> video_core/vulkan_common/vulkan_device.cpp:599:Device:   D32S8 hardware blit support: true
+[ 102.692683] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:390:CreateSwapchain: Swapchain: 1280x720 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 3
+[ 102.692689] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:395:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 2/8 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[ 102.713796] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:508:PipelineCache: DynamicState setting value: 2
+[ 102.713847] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:338:Report: Driver: NVIDIA 615.78.8.0
+[ 102.713849] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:339:Report: Device: NVIDIA GeForce RTX 3050 Laptop GPU
+[ 102.713850] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:340:Report: Vulkan: 1.4.351
+[ 102.713852] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:341:Report: Available VRAM: 3.25 GiB
+[ 102.713853] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:344:Report: Window system: Wayland
+[ 102.713886] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:345:Report: Render surface: 0x55ea56c6a750 | scale: 1.00
+[ 102.713887] Render.Vulkan <Info> video_core/renderer_vulkan/renderer_vulkan.cpp:349:Report: Swapchain: 1280x720 | format: 44 | images: 3
+[ 102.718159] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[ 102.722116] Audio.Sink <Info> audio_core/sink/sdl3_sink.cpp:42:InitializeAudio: SDL audio driver: pipewire
+[ 102.725083] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[ 102.768341] Core <Info> core/game_settings.cpp:133:LoadOverrides: Applied game settings for title ID 0100F43008C44000 on OS 1, GPU vendor 8 (Nvidia)
+[ 102.768975] Frontend <Info> yuzu/main_window.cpp:2113:BootGame: Booting game: 0100F43008C44000 | Pokémon Legends: Z-A (64-bit) | 1.0.0
+[ 102.769032] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:717:LoadDiskResources: Total Pipeline Count: 0
+[ 102.769102] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 102.775055] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:519:GetExternalSteadyClockSourceId: called, clock_source_id=b0af6547-174f-c979-ae74-a997709116e1
+[ 102.775066] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:536:GetUserSystemClockContext: called
+[ 102.775072] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:923:GetNetworkSystemClockContext: called
+[ 102.775078] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:940:IsUserSystemClockAutomaticCorrectionEnabled: called, out_automatic_correction_enabled=true
+[ 102.775079] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1371:GetUserSystemClockAutomaticCorrectionUpdatedTime: called
+[ 102.775080] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:897:GetDeviceTimeZoneLocationName: called
+[ 102.777118] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1354:GetDeviceTimeZoneLocationUpdatedTime: called
+[ 102.777971] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:544:SetUserSystemClockContext: called
+[ 102.778743] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:931:SetNetworkSystemClockContext: called
+[ 102.779256] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:950:SetUserSystemClockAutomaticCorrectionEnabled: called, out_automatic_correction_enabled=true
+[ 102.779862] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1379:SetUserSystemClockAutomaticCorrectionUpdatedTime: called
+[ 102.789663] Frontend <Warning> qt_common/gamemode.cpp:24:Start: dlopen failed - libgamemode.so: cannot open shared object file: No such file or directory
+[ 102.869583] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:664:GetVibrationMasterVolume: called, vibration_master_volume=1
+[ 102.912530] Service.VI <Warning> core/hle/service/vi/application_display_service.cpp:81:GetManagerDisplayService: (STUBBED) called
+[ 102.913002] Service.AM <Info> core/hle/service/am/service/window_controller.cpp:38:GetAppletResourceUserId: called
+[ 102.914295] Service.AM <Warning> core/hle/service/am/service/common_state_getter.cpp:353:SetRequestExitToLibraryAppletAtExecuteNextProgramEnabled: (STUBBED) called
+[ 102.915296] Service.AM <Warning> core/hle/service/am/service/application_functions.cpp:495:GetGpuErrorDetectedSystemEvent: (STUBBED) called
+[ 102.920943] Service.AM <Info> core/hle/service/am/service/window_controller.cpp:57:AcquireForegroundRights: called
+[ 102.921217] Service.AM <Info> core/hle/service/am/service/self_controller.cpp:189:SetFocusHandlingMode: called, notify=false background=false suspend=true
+[ 102.921500] Service.AM <Info> core/hle/service/am/service/self_controller.cpp:219:SetOutOfFocusSuspendingEnabled: called, enabled=false
+[ 104.207699] Service.AM <Info> core/hle/service/am/service/self_controller.cpp:180:SetPerformanceModeChangedNotification: called, enabled=true
+[ 104.210843] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:1428:GetTouchScreenMode: called, touch_screen_mode=1
+[ 104.212872] Service.HID <Info> hid_core/frontend/emulated_controller.cpp:1330:SetPollingMode: Set polling mode 0, device_index=3
+[ 104.224024] Loader <Info> core/file_sys/patch_manager.cpp:611:PatchRomFS: Patching RomFS for title_id=0100F43008C44000, type=01
+[ 104.316767] Service.AOC <Warning> core/hle/service/aoc/addon_content_manager.cpp:181:GetAddOnContentListChangedEventWithProcessId: (STUBBED) called
+[ 104.342406] Service.NVDRV <Warning> core/hle/service/nvdrv/nvdrv_interface.cpp:158:Initialize: (STUBBED) called
+[ 104.344152] Service.NVDRV <Warning> core/hle/service/nvdrv/nvdrv_interface.cpp:215:SetAruid: (STUBBED) called, pid=0x51
+[ 104.344783] Service.NVDRV <Warning> core/hle/service/nvdrv/nvdrv_interface.cpp:223:SetGraphicsFirmwareMemoryMarginEnabled: (STUBBED) called
+[ 104.347902] Service.VI <Warning> core/hle/service/vi/application_display_service.cpp:81:GetManagerDisplayService: (STUBBED) called
+[ 104.348517] Service.VI <Warning> core/hle/service/vi/application_display_service.cpp:74:GetSystemDisplayService: (STUBBED) called
+[ 104.348983] Service.VI <Warning> core/hle/service/vi/application_display_service.cpp:68:GetRelayService: (STUBBED) called
+[ 104.353971] Service.AM <Warning> core/hle/service/am/service/self_controller.cpp:271:CreateManagedDisplaySeparableLayer: (STUBBED) called
+[ 104.536705] Service.NVDRV <Warning> core/hle/service/nvdrv/devices/nvhost_gpu.cpp:164:SetErrorNotifier: (STUBBED) called, offset=0, size=1000, mem=18
+[ 104.536979] Service.NVDRV <Info> core/hle/service/nvdrv/devices/nvhost_gpu.cpp:441:ChannelSetTimeout: called, timeout=0x266
+[ 104.537849] Service.NVDRV <Info> core/hle/service/nvdrv/devices/nvhost_gpu.cpp:447:ChannelSetTimeslice: called, timeslice=0x3fc00
+[ 105.804028] Service.NS <Info> core/hle/service/ns/read_only_application_control_data_interface.cpp:192:GetApplicationDesiredLanguage: called with supported_languages=000070FD
+[ 106.510012] Service.Audio <Info> audio_core/sink/sdl3_sink.cpp:120:SDLSinkStream: Opening SDL stream 0x7f42f005f040 with: rate 48000 channels 2 (system channels 2)  format 32784
+[ 106.919916] Service.ACC <Warning> core/hle/service/acc/acc.cpp:1023:InitializeApplicationInfoV2: (STUBBED) called
+[ 106.920551] Service.AM <Info> core/hle/service/am/service/application_functions.cpp:136:PopLaunchParameter: called, kind=2
+[ 106.923848] Service.AOC <Warning> core/hle/service/aoc/addon_content_manager.cpp:201:CheckAddOnContentMountStatus: (STUBBED) called
+[ 106.931582] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.935207] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.940142] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.941834] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.943525] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.945212] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.946904] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.948736] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.950294] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.952044] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.953694] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 106.955365] Service.FS <Info> core/hle/service/filesystem/fsp/fsp_srv.cpp:273:OpenSaveDataFileSystem: called.
+[ 107.035056] Service.BCAT <Info> core/hle/service/bcat/service_creator.cpp:43:CreateBcatService: called, process_id=81
+[ 107.083963] Service.HID <Info> core/hle/service/hid/hid_server.cpp:1467:SetTouchScreenResolution: called, width=1280, height=720, applet_resource_user_id=81
+[ 107.915355] Service.AOC <Warning> core/hle/service/aoc/addon_content_manager.cpp:164:PrepareAddOnContent: (STUBBED) called with addon_index=2, process_id=81
+[ 107.916487] Loader <Info> core/file_sys/patch_manager.cpp:611:PatchRomFS: Patching RomFS for title_id=0100F43008C45002, type=02
+[ 107.918712] Service.AOC <Warning> core/hle/service/aoc/addon_content_manager.cpp:164:PrepareAddOnContent: (STUBBED) called with addon_index=2, process_id=81
+[ 107.919296] Loader <Info> core/file_sys/patch_manager.cpp:611:PatchRomFS: Patching RomFS for title_id=0100F43008C45002, type=02
+[ 107.921965] Service.AOC <Warning> core/hle/service/aoc/addon_content_manager.cpp:189:NotifyMountAddOnContent: (STUBBED) called
+[ 108.926833] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 108.926855] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 108.940326] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 109.516056] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:390:CreateSwapchain: Swapchain: 1920x1017 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 3
+[ 109.516062] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:395:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 2/8 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[ 122.383435] Service.AM <Warning> core/hle/service/am/service/self_controller.cpp:153:GetLibraryAppletLaunchableEvent: (STUBBED) called
+[ 122.390760] Service.AM <Info> core/hle/service/am/frontend/applet_software_keyboard.cpp:58:Initialize: Initializing Software Keyboard Applet with LibraryAppletMode=0
+[ 122.390763] Service.AM <Info> core/hle/service/am/frontend/applet_software_keyboard.cpp:184:InitializeForeground: Initializing Normal Software Keyboard Applet.
+[ 122.390771] Debug <Critical> core/hle/service/am/frontend/applet_software_keyboard.cpp:217:operator(): /home/user/projects/eden-wayland/src/core/hle/service/am/frontend/applet_software_keyboard.cpp: assert Unknown SwkbdConfig revision=1048590 with size=1224
+[ 122.392050] Service.AM <Info> yuzu/applets/qt_software_keyboard.cpp:1561:InitializeKeyboard: 
+KeyboardInitializeParameters:
+ok_text=
+header_text=What is your name?
+sub_text=
+guide_text=
+initial_text=
+max_text_length=12
+min_text_length=1
+initial_cursor_position=0
+type=4
+password_mode=0
+text_draw_type=0
+key_disable_flags=4
+use_blur_background=true
+enable_backspace_button=true
+enable_return_button=false
+disable_cancel_button=false
+[ 126.925246] Service.NGC <Info> core/hle/service/ngc/ngc.cpp:94:GetContentVersion: (STUBBED) called
+[ 126.929174] Service.NS <Info> core/hle/service/ns/read_only_application_control_data_interface.cpp:192:GetApplicationDesiredLanguage: called with supported_languages=000070FD
+[ 126.929717] Service.NGC <Info> core/hle/service/ngc/ngc.cpp:105:Check: (STUBBED) called
+[ 126.932278] Service.AM <Info> core/hle/service/am/frontend/applet_software_keyboard.cpp:297:ProcessTextCheck: 
+TextCheckResult: Success
+TextCheckMessage: 
+[ 126.932359] Service.VI <Info> core/hle/service/am/display_layer_manager.cpp:220:SetOverlayZIndex: called, managed_layer=1 z=2
+[ 130.259693] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 146.732776] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 158.208203] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 158.209104] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 175.956585] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 176.070299] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 176.070326] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 176.751442] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 178.116486] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 178.227992] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 178.228004] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 200.688419] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 200.688431] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 204.511023] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 236.130943] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 244.618097] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 244.639259] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 244.639448] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 255.439330] Service.FS <Warning> core/hle/service/filesystem/fsp/fs_i_filesystem.cpp:138:Commit: (STUBBED) called
+[ 267.198172] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 278.894718] HW.Memory <Error> ./core/device_memory_manager.inc:485:operator(): Unmapped Device ReadBlock @ 0x0000003086f000 (start address = 0x00000030861000, size = 69632)
+[ 278.894736] HW.Memory <Error> ./core/device_memory_manager.inc:485:operator(): Unmapped Device ReadBlock @ 0x00000030870000 (start address = 0x00000030861000, size = 69632)
+[ 278.894739] HW.Memory <Error> ./core/device_memory_manager.inc:485:operator(): Unmapped Device ReadBlock @ 0x00000030871000 (start address = 0x00000030861000, size = 69632)
+[ 278.948318] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 331.008728] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 391.031206] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 410.385114] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 410.385304] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 410.389771] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 420.460810] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 420.461620] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 441.528802] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 441.650414] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 441.650429] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 451.413886] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 455.890839] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 492.850909] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 511.397382] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 513.163205] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 516.704464] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 516.705178] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 527.053798] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 562.800964] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 564.179404] Service.FS <Warning> core/hle/service/filesystem/fsp/fs_i_filesystem.cpp:138:Commit: (STUBBED) called
+[ 570.008735] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 570.009026] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 570.180460] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 570.180476] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 573.732594] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 582.870627] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 633.849591] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 665.311140] Service.FS <Warning> core/hle/service/filesystem/fsp/fs_i_filesystem.cpp:138:Commit: (STUBBED) called
+[ 679.719451] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 694.854706] Core <Warning> core/core.cpp:756:ResolveCallerProgramId: Could not resolve caller process_id=0, falling back to application 0100F43008C44000
+[ 733.153161] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 733.153175] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 742.459070] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 742.459082] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 760.814335] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 760.814357] Debug <Critical> video_core/texture_cache/format_lookup_table.cpp:274:operator(): /home/user/projects/eden-wayland/src/video_core/texture_cache/format_lookup_table.cpp: assert texture format=0 srgb=false components={0 0 0 0}
+[ 798.925105] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[ 798.927987] Service.Audio <Info> audio_core/sink/sink_details.cpp:108:GetOutputSinkDetails: Auto-selecting the sdl3 backend
+[ 815.122998] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:390:CreateSwapchain: Swapchain: 908x975 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 3
+[ 815.123005] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:395:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 2/8 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[ 818.426924] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:390:CreateSwapchain: Swapchain: 1920x1017 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 3
+[ 818.426930] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:395:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 2/8 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[ 819.190394] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:390:CreateSwapchain: Swapchain: 908x975 | format: VK_FORMAT_B8G8R8A8_UNORM | color space: 0 | present mode: VK_PRESENT_MODE_FIFO_KHR | images: 3
+[ 819.190402] Render.Vulkan <Info> video_core/renderer_vulkan/vk_swapchain.cpp:395:CreateSwapchain: Surface: extent 1x1..16384x16384 (current compositor-defined) | images 2/8 | transform: VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR | alpha: VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR
+[ 844.629159] Frontend <Warning> ./qt_common/render/emu_thread.h:65:ForceStop: Force stopping EmuThread
+[ 844.629302] Service.Nvnflinger <Error> core/hle/service/nvnflinger/buffer_queue_producer.cpp:132:WaitForFreeSlotThenRelock: BufferQueue has been abandoned
+[ 844.629968] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:544:SetUserSystemClockContext: called
+[ 844.630389] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:931:SetNetworkSystemClockContext: called
+[ 844.652385] Service.SET <Info> core/hle/service/set/system_settings_server.cpp:664:GetVibrationMasterVolume: called, vibration_master_volume=1
+[ 844.665990] Service.NVDRV <Warning> core/hle/service/nvdrv/core/nvmap.cpp:250:UnpinHandle: Pin count imbalance detected!
+[ 844.679636] Render.Vulkan <Info> video_core/renderer_vulkan/vk_pipeline_cache.cpp:1067:SerializeVulkanPipelineCache: Vulkan driver pipelines cached at: /home/user/projects/eden-wayland/build/wayland-run/user/cache/shader/0100f43008c44000/vulkan_pipelines.bin
+[ 845.080021] Frontend <Warning> qt_common/gamemode.cpp:41:Stop: dlopen failed - libgamemode.so: cannot open shared object file: No such file or directory
+[ 845.083719] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
+[ 845.085514] Config <Info> frontend_common/config.cpp:77:WriteToIni: Writing Global configuration to: /home/user/projects/eden-wayland/build/wayland-run/user/config/qt-config.ini
